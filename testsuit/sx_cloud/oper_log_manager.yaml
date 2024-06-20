@@ -1,0 +1,87 @@
+name: 系统管理-日志管理
+description: 系统管理-日志管理场景
+commonparam:
+skip:
+namespaces: log
+testcases:
+  - url: /api/connection/oper-log/getLogList
+    name: 查询日志默认条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"","logType":"","startTime":"","endTime":"","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log/getLogList
+    name: 选择发生时间查询日志
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"","logType":"","startTime":"{{TimesAlterFormat}}","endTime":"{{TimesFormat}}","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log/getLogList
+    name: 输入用户名查询日志
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"山西灵石昕益旺岭煤业有限公司","logType":"","startTime":"","endTime":"","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log/getLogList
+    name: 选择日志类型查询日志
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"","logType":1,"startTime":"","endTime":"","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckRecords: '{"logType":1}'
+  - url: /api/connection/oper-log/getLogList
+    name: 组合条件查询日志
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"山西灵石昕益旺岭煤业有限公司","logType":1,"startTime":"{{TimesAlterFormat}}","endTime":"{{TimesFormat}}","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log/getDownloadLogs
+    name: 下载日志
+    headers:
+    method: POST
+    skip: 
+    data: '{"userName":"","logType":"","startTime":"{{TimesAlterFormat}}","endTime":"{{TimesFormat}}"}'
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /api/connection/oper-log-config/getLogConfig
+    name: 获取日志存储配置
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: logConfigId
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log-config/updateLogConfig
+    name: 修改日志存储配置
+    headers:
+    method: POST
+    skip: 
+    data: '{"logConfigId":"${logConfigId}","logConfigName":"操作日志","logConfigDate":"50","logConfigType":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-log-config/updateLogConfig
+    name: 恢复日志存储配置
+    headers:
+    method: POST
+    skip: 
+    data: '{"logConfigId":"${logConfigId}","logConfigName":"操作日志","logConfigDate":"180","logConfigType":1}'
+    next: 
+    check:
+      - CheckMessage: "success"

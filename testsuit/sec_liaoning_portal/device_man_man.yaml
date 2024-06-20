@@ -1,0 +1,186 @@
+name: 设备管理-设备管理
+description: 设备管理-设备管理
+commonparam: 
+skip:
+namespaces: device_man_man
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox
+    name: 群组新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lyxtest123","description":"lyxtest123"}'
+    next: result.id
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/v1/device
+    name: 设备新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"deviceName":"lyxtest123","deviceModel":"G5000-A04","factory":"cmiot","groupId":"${result_id}","imei":"{{GenerateRandomDigits}}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&operatingState=0&displayOriginalOperatingState=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备按名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&deviceName=lyxtest123&operatingState=0&displayOriginalOperatingState=1'
+    next: imei
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备按IMEI查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&imei=${imei}&operatingState=0&displayOriginalOperatingState=1'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备按群组查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&operatingState=0&groupNameOnebox=lyxtest123&displayOriginalOperatingState=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备按状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&operatingState=2&displayOriginalOperatingState=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/detail
+    name: 设备详情
+    headers:
+    method: GET
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/performance/rsrp
+    name: 性能监控-rsrp查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "OK"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/performance/sinr
+    name: 性能监控-sinr查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "OK"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/performance/cpuUsage
+    name: 性能监控-cpuUsage查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "OK"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/performance/memoryUsage
+    name: 性能监控-memoryUsage查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "OK"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/flow
+    name: 数据统计-flow查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/wifi/list
+    name: wifi设置查询
+    headers:
+    method: GET
+    skip: 
+    data: 'protocolType=1&deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/blacklist/state
+    name: 黑白名单状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/blacklist/list
+    name: 黑白名单查询
+    headers:
+    method: GET
+    skip: 
+    data: 'protocolType=1&deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/${id}/properties
+    name: 下挂设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'protocolType=1&propertyNames=accessDevice'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/update
+    name: 设备编辑
+    headers:
+    method: PUT
+    skip: 
+    data: '{"deviceName":"lyxtest123","deviceModel":"G5000-A04","factory":"cmiot","imei":"${imei}","groupId":"${result_id}","id":${id}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/delete
+    name: 设备删除
+    headers:
+    method: DELETE
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox
+    name: 群组删除
+    headers:
+    method: DELETE
+    skip: 
+    data: 'id=${result_id}'
+    next: 
+    check:
+      - CheckMessage: "succeed"

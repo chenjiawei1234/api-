@@ -1,0 +1,226 @@
+name: 首页概览
+description: 首页概览
+commonparam: 
+skip:
+namespaces: home_view
+testcases:
+  - url: /unionmallmanage/cm-npn/portal/cstmenu/query-homepage-menu
+    name: 门户菜单查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/productMenu
+    name: 控制台菜单查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getSliceDataInfo
+    name: 切片查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: sliceId
+    check:
+      - CheckData(1,result,_): '{"sliceId": "128-3405F9"}'
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceDnnData
+    name: dnn查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: dnnName
+    check:
+      - CheckData(1,result,_): '{"dnnName": "CMIOT5GQZJJQPKJ.FJ"}'
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/wirelessUpAndDownRate
+    name: 无线网卡片数据查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/wirelessUpAndDownRate
+    name: 无线网15分钟查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"granularity":"minute"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/wirelessUpAndDownRate
+    name: 无线网1小时查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"granularity":"hour"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceUpfRateAndThroughput
+    name: 核心网卡片数据查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceUpfRateAndThroughput
+    name: 核心网15分钟查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"granularity":"minute"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceUpfRateAndThroughput
+    name: 核心网1小时查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"granularity":"hour"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/service/notice/queryByCondition
+    name: 公告查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":3}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/baf/bill/statisticsByMoney
+    name: 账单费用查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"range":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getBeInfo
+    name: 省份查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"pageIndex":0,"sliceIdList":["${sliceId}"],"alertLevel":1,"activeIs":0}'
+    next: 
+    check:
+      - CheckData(2,result,list): '{"recordId": "GJ2023121503010130938190"}'
+  - url: /unionmallmanage/icm-npn/portal/card/queryBusinessUserCountByStatus
+    name: 卡数量查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"beId":"${global_beId}","custCode":"${global_custCode}","custId":"${global_custId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/mmnpn/equipmentManage/testHistory/searchTestSummary
+    name: 专网诊断
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/nettop/queryStatusNew
+    name: 切片详情查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}"}'
+    next: 
+    check:
+      - CheckData(2,result,gnode): '{"wlNssiName": "福建泉州柒牌5G智慧工厂项目(128-347216)无线网NNSI"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getCorePerformanceOfUpfData
+    name: upf性能数据查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}"}'
+    next: 
+    check:
+      - CheckData(3,result,upfList): '{"upfList": "QZHUPFm502BZX"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getGnbInfoByCustomer
+    name: 基站查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}"}'
+    next: 
+    check:
+      - CheckData(2,result,gnbName): '{"gnodeId": "2102562"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getCorePerformanceOfDnnData
+    name: 性能数据-dnn查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}","endTime":"2024-05-08 09:00:00","startTime":"2024-05-07 09:00:00"}'
+    next: 
+    check:
+      - CheckData(3,result,dnnList): '{"dnnList": "CMIOT5GQZJJQPKJ.FJ"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getCorePerformanceDataInfo
+    name: 核心网性能数据查询-近一天
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}","priNetMode":2,"endTime":"2024-05-08 09:00:00","startTime":"2024-05-07 09:00:00","dnnName":"${dnnName}"}'
+    next: 
+    check:
+      - CheckData(2,result,dnnPerformanceAttributes): '{"dnnName": "CMIOT5GQZJJQPKJ.FJ"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getCorePerformanceDataInfo
+    name: 核心网性能数据查询-近两天
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}","priNetMode":2,"endTime":"2024-05-08 10:00:00","startTime":"2024-05-06 10:00:00","dnnName":"${dnnName}"}'
+    next: 
+    check:
+      - CheckData(2,result,dnnPerformanceAttributes): '{"dnnName": "CMIOT5GQZJJQPKJ.FJ"}'
+  - url: /unionmallmanage/standard/am-npn/portal/coreNetwork/getWirelessNetworkPerformanceData
+    name: 无线网性能数据查询-15分钟颗粒度
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}","priNetMode":2,"endTime":"2024-05-08 09:00:00","startTime":"2024-05-07 09:00:00","gnbId":"","siteId":"","networkType":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceData
+    name: 无线网性能数据查询-1小时颗粒度
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceId":"${sliceId}","priNetMode":2,"endTime":"2024-05-08 09:00:00","startTime":"2024-05-07 09:00:00","gnbId":"","siteId":"","networkType":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+
+
+
+  

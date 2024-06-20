@@ -1,0 +1,105 @@
+name: 内容管理-客户案例
+description: 内容管理-客户案例
+commonparam:
+skip:
+namespaces: case_info
+testcases:
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/list
+    name: 行业信息查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":999}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/queryList
+    name: 客户案例查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryName":null,"caseName":"","status":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/add
+    name: 客户案例新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseName":"lc客户案例测试","industryName":"智慧园区","casePicture":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=171384060837065b64204-4502-4d73-8b2c-857090b3472e.png","caseBannerPicture":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840619527c3948756-07f3-4961-bb95-d98027fe3590.jpg","caseInfo":"lc客户案例测试","situation":[{"title":"lc客户案例测试","introduce":"lc客户案例测试","detailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840633477c56a26f1-0370-4c1f-81ad-e30b49f12094.png"}],"solution":{"title":"lc客户案例测试","introduce":"lc客户案例测试","detailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840642079b6389479-1e49-4fdd-b19b-f74a689fe963.png"},"projectValue":"lc客户案例测试","value":[{"title":"lc客户案例测试","introduce":"业务加速A1"}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/queryList
+    name: 客户案例查询-按智慧文旅查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryName":"智慧文旅","caseName":"","status":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/queryList
+    name: 客户案例查询-按已发布状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryName":null,"caseName":"","status":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/queryList
+    name: 客户案例查询-按案例名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryName":null,"caseName":"lc客户案例测试","status":null}'
+    next: caseId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/edit
+    name: 客户案例发布
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}","status":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/edit
+    name: 客户案例下架
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}","status":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/case/queryCaseInfo
+    name: 客户案例详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/edit
+    name: 客户案例编辑
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseName":"lc客户案例测试2","industryName":"智慧园区","casePicture":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=171384060837065b64204-4502-4d73-8b2c-857090b3472e.png","caseBannerPicture":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840619527c3948756-07f3-4961-bb95-d98027fe3590.jpg","caseInfo":"lc客户案例测试","situation":[{"title":"lc客户案例测试","introduce":"lc客户案例测试","detailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840633477c56a26f1-0370-4c1f-81ad-e30b49f12094.png"}],"solution":{"title":"lc客户案例测试","introduce":"lc客户案例测试","detailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713840642079b6389479-1e49-4fdd-b19b-f74a689fe963.png"},"projectValue":"lc客户案例测试","value":[{"title":"lc客户案例测试","introduce":"业务加速A1"}],"caseId":"${caseId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/case/delete
+    name: 客户案例删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

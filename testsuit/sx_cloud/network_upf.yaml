@@ -1,0 +1,106 @@
+name: UPF监控
+description: UPF监控场景
+commonparam:
+skip:
+namespaces: upf
+testcases:
+  - url: /api/network/upf/upfStDistribution
+    name: 查询upf状态分布
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfAlarmDistribution
+    name: 查询upf告警分布
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfInfo
+    name: 查询upf列表信息默认条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","upfStatus":"","pageSize":10}'
+    next: upfName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfInfo
+    name: 选择upf状态查询upf列表信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","upfStatus":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfInfo
+    name: 选择告警是查询upf列表信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":1,"upfStatus":"","pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfInfo
+    name: 选择告警否查询upf列表信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":0,"upfStatus":"","pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfNameList
+    name: upf名称列表
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfDetails
+    name: upf详情
+    headers:
+    method: POST
+    skip: 
+    data:
+      upfName: ${upfName}
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfAlarmLst
+    name: upf告警列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"alarmStatus":1,"upfName":"${upfName}","pageIndex":1,"pageSize":9999}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfLoadAvg
+    name: upf平均负载
+    headers:
+    method: POST
+    skip: 
+    data: '{"upfName":"${upfName}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upThroughputUtilization
+    name: upf吞吐量利用率
+    headers:
+    method: POST
+    skip: 
+    data: '{"upfName":"${upfName}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

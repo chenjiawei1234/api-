@@ -1,0 +1,51 @@
+name: 双域专网-已购产品
+description: 双域专网-已购产品
+commonparam: 
+skip:
+namespaces: sg_order
+testcases:
+  - url: /sg-npn/auth/apiLogin
+    name: 鉴权
+    headers:
+    method: POST
+    skip: 
+    data: '{"appKey": "${global_appKey}","appSecret": "${global_appSecret}","timestamp": "2024-05-10 11:40:00"}'
+    next: apiToken
+    check:
+      - CheckMessage: "成功"
+  - url: /sg-npn/dd/v1/getProductList
+    name: 双域专网产品实例查询
+    headers:
+      ecId: ${ecId}
+      x-sg-app-key: ${appKey}
+      apiToken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckData(1,result,_): '{"proInstId": "1"}'
+  - url: /sg-npn/dd/v1/queryUserPackage
+    name: 分页查询用户开通状态信息
+    headers:
+      ecId: ${ecId}
+      x-sg-app-key: ${appKey}
+      apiToken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex": 1,"pageSize": 10}'
+    next: 
+    check:
+      - CheckData(2,result,list): '{"msisdn": "13782639451"}'
+  - url: /sg-npn/dd/v1/queryNoticeBindInfo
+    name: 查询企业平台配置地址
+    headers:
+      ecId: ${ecId}
+      x-sg-app-key: ${appKey}
+      apiToken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"groupCustId": ${global_groupCustId}}'
+    next: 
+    check:
+      - CheckMessage: "成功"

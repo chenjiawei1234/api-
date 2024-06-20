@@ -1,0 +1,33 @@
+name: 业务加速A1
+description: 业务加速实例
+commonparam:
+skip:
+namespaces: ordered_A1
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/queryA1InstList
+    name: 默认查询条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"msisdn":"","custCode":"${global_custCode}","skuId":"","orderStatus":"","monthlySubscription":"","changeStatus":""}'
+    next: msisdn
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/queryA1InstList
+    name: 按msisdn查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":-1,"pageSize":10,"msisdn":"${msisdn}","custCode":"${global_custCode}","skuId":"","orderStatus":"","monthlySubscription":"","changeStatus":""}'
+    next: msisdn
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/queryA1InstList
+    name: 按生效起止时间查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":-1,"pageSize":10,"msisdn":"","custCode":"${global_custCode}","skuId":"","orderStatus":"","monthlySubscription":"","changeStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"

@@ -1,0 +1,115 @@
+name: 基站监控
+description: 基站监控场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/baseStation/overviewOfAllBaseStations
+    name: 查询基站概览
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 基站列表查询默认条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":"","alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择基站状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"在网","gnodebType":"","alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择基站类型查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":"宏基站","alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择是否告警查询基站列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":"","alarmStatus":true,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 条件组合查询基站列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"在网","gnodebType":"宏基站","alarmStatus":false,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryTheLstOfAllBaseStations
+    name: 查询所有基站名称列表
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: gnodebName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryTheDetailsOfASingleBaseStation
+    name: 查询单个基站详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebName":"${gnodebName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/baseStationAlarmClasTbl
+    name: 查询单个基站告警列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebName":"${gnodebName}","pageIndex":1,"pageSize":999}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/numOfUsersAccessingUsers
+    name: 查询基站接入用户数性能
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebName":"${gnodebName}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryNrcellByGnodebName
+    name: 查询基站小区
+    headers:
+    method: POST
+    skip: 
+    data: '{"neName":"${gnodebName}"}'
+    next: neName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/avgPrbUtilization
+    name: 查询基站PRB平均利用率性能
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebName":"${gnodebName}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}","neName":"${neName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+ 

@@ -1,0 +1,16 @@
+name: 本地业务保障A3
+description: 共享UPF实例
+commonparam:
+skip:
+namespaces: ordered_A3
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/queryProdInstList
+    name: 默认查询条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"categoryId":"cat0201","businessPackage":"1","bindWidth":"","projectName":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

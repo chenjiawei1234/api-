@@ -1,0 +1,106 @@
+name: RRU监控
+description: RRU监控场景
+commonparam:
+skip:
+namespaces: rru
+testcases:
+  - url: /api/network/rru/rruStDistribution
+    name: rru概览
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruAlarmDistribution
+    name: rru告警分布
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruList
+    name: rru列表查询默认条件
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","rruName":"","pageSize":10}'
+    prev: 
+    next: rruName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruList
+    name: 按rru名称查询列表
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","rruName":"${rruName}","pageSize":10}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruList
+    name: 按rru状态查询列表
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","rruName":"","rruStatus":"在网","pageSize":10}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruList
+    name: 按rru是否告警查询列表
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"0","rruName":"","rruStatus":"","pageSize":10}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruList
+    name: 组合查询列表
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"0","rruName":"${rruName}","rruStatus":"在网","pageSize":10}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruNameList
+    name: rru名称列表查询
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruAlarmList
+    name: rru告警列表查询
+    headers: 
+    method: POST
+    skip: 
+    data: '{"rruName":"${rruName}"}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/rruDetails
+    name: rru详情
+    headers: 
+    method: POST
+    skip: 
+    data: '{"rruName":"${rruName}"}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"

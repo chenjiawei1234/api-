@@ -1,0 +1,34 @@
+name: 用户中心-我的公告
+description: 用户中心-我的公告
+commonparam: 
+skip:
+namespaces: user_center_noti
+testcases:
+  - url: /unionmallmanage/common-npn/portal/service/notice/queryByCondition
+    name: 默认查询条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/service/notice/queryByCondition
+    name: 按类型查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"noticeType":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/service/notice/queryByCondition
+    name: 按发布日期查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"publishStartTime":"2024-05-01 00:00:00","publishEndTime":"2024-05-31 23:59:59"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+ 

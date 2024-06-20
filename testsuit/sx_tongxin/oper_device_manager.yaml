@@ -1,0 +1,130 @@
+name: 终端管理
+description: 终端管理场景
+commonparam:
+  deviceName: "testdevice124321213"
+  importDeviceName: "testimportdevice"
+  importMsisdn: "14766201064"
+skip:
+namespaces: device
+testcases:
+  - url: /api/connection/oper-device/addDeviceInfo
+    name: 新增终端(随便输入msisdn)
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"deviceName":"${deviceName}","msisdn":"4353241232321","deviceType":1,"deviceAddress":"重庆","factory":"移动","deviceStatus":true}'
+    next:
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/getDeviceList
+    name: 终端查询默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":"","deviceName":"","deviceStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/getDeviceList
+    name: 选择终端类型查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":1,"deviceName":"","deviceStatus":""}'
+    next: 
+    check:
+      - CheckRecords: '{"deviceType": 1}'
+  - url: /api/connection/oper-device/getDeviceList
+    name: 输入终端名称查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":"","deviceName":"${deviceName}","deviceStatus":""}'
+    next: deviceId
+    check:
+      - CheckRecords: '{"deviceName":"${deviceName}"}'
+  - url: /api/connection/oper-device/getDeviceList
+    name: 选择终端状态查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":"","deviceName":"","deviceStatus":true}'
+    next: 
+    check:
+      - CheckRecords: '{"deviceStatus":true}'
+  - url: /api/connection/oper-device/getDeviceList
+    name: 组合条件查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":1,"deviceName":"${deviceName}","deviceStatus":true}'
+    next: 
+    check:
+      - CheckRecords: '{"deviceType":1,"deviceName":"${deviceName}","deviceStatus":true}'
+  - url: /api/connection/oper-device/updateDeviceInfo
+    name: 编辑终端
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"deviceId":"${deviceId}","deviceName":"${deviceName}","deviceType":1,"deviceStatus":false,"msisdn":"4353241232322","factory":"cmiot","deviceAddress":"D3","isDelete":false}'
+    next:
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/deleteDeviceInfo
+    name: 删除终端
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"deviceId":"${deviceId}","deviceName":"${deviceName}","deviceType":1,"deviceStatus":false,"msisdn":"4353241232322","factory":"cmiot","deviceAddress":"D3","isDelete":true}'
+    next:
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/uploadDevice
+    name: 批量上传终端文件
+    headers:
+      Apitoken: ${apiToken}
+    method: UPLOAD
+    skip:
+    data:
+      files: '{"files":"testsuit/sx_tongxin/终端导入模板.xlsx"}'
+    next: t
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/importDevice
+    name: 批量导入终端
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"deviceId":null,"deviceName":null,"deviceType":null,"deviceStatus":null,"msisdn":null,"factory":null,"deviceAddress":null,"isDelete":null,"createTime":null,"t":"${t}"}'
+    next:
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/getDeviceList
+    name: 导入成功后查询导入设备
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"pageIndex":1,"pageSize":10,"deviceType":"","deviceName":"${importDeviceName}","deviceStatus":""}'
+    next: deviceId
+    check:
+      - CheckRecords: '{"deviceName":"testimportdevice"}'
+  - url: /api/connection/oper-device/deleteDeviceInfo
+    name: 删除导入成功的终端
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"deviceId":"${deviceId}","deviceName":"${importDeviceName}","deviceType":1,"deviceStatus":false,"msisdn":"${importMsisdn}","factory":"cmiot","deviceAddress":"重庆","isDelete":true}'
+    next:
+    check:
+      - CheckMessage: "success"

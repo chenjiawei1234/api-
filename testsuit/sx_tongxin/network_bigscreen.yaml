@@ -1,0 +1,26 @@
+name: 专网数字大屏
+description: 专网数字大屏场景
+commonparam:
+skip:
+namespaces:
+testcases:
+  - url: /api/network/bigScr/listTongxin
+    name: 查询告警列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/bigScr/selectRruList
+    name: 查询存在告警的rru列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"

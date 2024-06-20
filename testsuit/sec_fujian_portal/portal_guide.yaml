@@ -1,0 +1,16 @@
+name: 门户-智能导购
+description: 门户-智能导购
+commonparam: 
+skip:
+namespaces: portal_guide
+testcases:
+  - url: /unionmallmanage/common-npn/portal/guidemanager/applicationscene/getGuidemanageInfo
+    name: 智能导购
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

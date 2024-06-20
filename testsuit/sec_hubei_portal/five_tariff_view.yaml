@@ -1,0 +1,15 @@
+name: 5G快线-业务概览
+description: 5G快线-业务概览
+commonparam:
+skip:
+namespaces: five_tariff_view
+testcases:
+  - url: /unionmallmanage/onecyber/icm/statistics/onecyber/icm/statistic/5g-expressline/rate-limiting/statistic
+    name: 主页列表统计
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"

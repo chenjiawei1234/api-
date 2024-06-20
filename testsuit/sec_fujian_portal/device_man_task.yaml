@@ -1,0 +1,61 @@
+name: 终端管理-升级任务
+description: 终端管理-升级任务
+commonparam: 
+skip:
+namespaces: device_man_task
+testcases:
+  - url: /unionmallmanage/cpeApi/cpe/v1/ota/task/device/list
+    name: 任务查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"currentVersion":"","imei":"","firmwareVersion":"","upgradeStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/ota/task/device/list
+    name: 任务按升级成功状态查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"currentVersion":"","imei":"","firmwareVersion":"","upgradeStatus":"6"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/ota/task/device/list
+    name: 任务按升级前版本查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"currentVersion":"v1","imei":"","firmwareVersion":"","upgradeStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/ota/task/device/list
+    name: 任务按设备imei查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"currentVersion":"","imei":"147852258741258","firmwareVersion":"","upgradeStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/ota/task/device/list
+    name: 任务按升级后版本查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"currentVersion":"","imei":"","firmwareVersion":"v1.1.25","upgradeStatus":""}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"

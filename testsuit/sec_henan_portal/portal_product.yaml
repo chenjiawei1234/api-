@@ -1,0 +1,240 @@
+name: 门户-产品
+description: 门户-产品
+commonparam: 
+skip:
+namespaces: portal_product
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 公共网络B1
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB1"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 公网专用B2
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 专网专用B3
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB3"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 业务加速A1
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA1"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 业务隔离A2
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 本地业务保障A3
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA3"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 数据不出场A4
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA4"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 边缘节点A5
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA5"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 超级上行A6
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA6"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 5G专线A7
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA7"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 网络设计服务A8
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA8"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 网络优化服务A9
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA9"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 网络运维服务A10
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA10"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 重保服务A11
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA11"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 网络安全服务A12
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA12"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 网络数字孪生A13
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA13"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 核心网专用A14
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductA14"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 双域专网
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductExtranet"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 移动畅联
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB1A2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 局域监控
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB2A2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 专享园区
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB2A2A3A4A5"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 尊享精品
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductB3A2A3A4A5A6"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 优享服务
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductPrefer"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 专享服务
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductExclusive"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 尊享服务
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"ProductExalted"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/area/queryChildInfo
+    name: 获取地市信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"areaId":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"

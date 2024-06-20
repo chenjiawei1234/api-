@@ -1,0 +1,25 @@
+name: 数据不出场A4
+description: 独享UPF实例&UPF监控
+commonparam:
+skip:
+namespaces: ordered_A4
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/queryProdInstList
+    name: 默认查询条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"categoryId":"cat0202","businessPackage":"2","bindWidth":"","projectName":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/dpm-npn/cloudDesktop/getUpfList
+    name: UPF监控查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"custCode":"100AIOT11000004556018DTt9V"}'
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  

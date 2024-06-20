@@ -1,0 +1,33 @@
+name: 系统管理
+description: 系统管理-系统配置
+commonparam:
+skip:
+namespaces: enterprise
+testcases:
+  - url: /api/connection/enterprise/info
+    name: 查询企业配置信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: data.id#data.enterpriseName#data.screenName#data.createTime#data.enterpriseLogo
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/enterprise/storage
+    name: 修改保存企业信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"id":"${data_id}","enterpriseName":"${data_enterpriseName}_new","screenName":"${data_screenName}_new","createTime":"{{TimesFormat}}","enterpriseLogo":""}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/enterprise/storage
+    name: 恢复保存企业信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"id":"${data_id}","enterpriseName":"${data_enterpriseName}","screenName":"${data_screenName}","createTime":"${data_createTime}","enterpriseLogo":"${data_enterpriseLogo}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

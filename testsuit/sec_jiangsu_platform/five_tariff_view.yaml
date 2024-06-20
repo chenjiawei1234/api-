@@ -1,0 +1,61 @@
+name: 5G快线-数据看板
+description: 5G快线-数据看板
+commonparam:
+skip:
+namespaces: five_tariff_view
+testcases:
+  - url: /unionmallmanage/onecyber/icm/tariff/5GTariff/statistics
+    name: 5G快线新增套餐查询
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/tariff/5GTariff/count
+    name: 套餐数量统计
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/deviceCount
+    name: 接入设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/5g-expressline/card/real-name/status/statistics
+    name: 实名认证状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/count/model
+    name: 设备型号分布查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/bindStatus/num
+    name: 上网权益异常统计
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

@@ -1,0 +1,52 @@
+name: 河南省平台前台自动化测试
+before: OnecyberLogin#LoginThirdToken
+# env:
+#   platform_type: "portal" # 门户portal 运管platform
+#   login_third: later # loginThird接口，later用/dt/szlj/api/auth/login/loginThird，first用/unionmallmanage/cpeApi/auth/login/loginThird
+#   env: "test" # test pre prod
+#   baseurl: http://10.12.60.26:32214
+#   username: OCB1001772397
+#   username_enc: 1
+#   password: 05ecy!3eR
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "100"
+# headers:
+#   csttoken: ${token}
+# runpath: testsuit/sec_henan_portal/user_center_noti.yaml
+# after: 
+# env:
+#   platform_type: "portal" # 门户portal 运管platform
+#   env: "pre" # test pre prod
+#   baseurl: http://10.12.6.61:8151
+#   username: BE1001772397
+#   username_enc: 1
+#   password: 1qaz!QAZ
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "100"
+# headers:
+#   csttoken: ${token}
+# runpath: testsuit/sec_fujian_portal
+# after: 
+env:
+  platform_type: "portal" # 门户portal 运管platform
+  login_third: later # loginThird接口，later用/dt/szlj/api/auth/login/loginThird，first用/unionmallmanage/cpeApi/auth/login/loginThird
+  env: "prod" # test pre prod
+  baseurl: http://111.6.98.174:8001
+  username: BE0027719998
+  username_enc: 1
+  password: 2wsx@WSX
+  password_enc: 1
+  login_type: onecyber_2_onelink
+  custCode: "002210001230230000"
+  custId: "411000004476000"
+  beId: "002"
+headers:
+  csttoken: ${token}
+runpath: testsuit/sec_henan_portal
+after: 

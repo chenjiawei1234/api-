@@ -1,0 +1,150 @@
+name: 终端管理-终端管理
+description: 终端管理-终端管理
+commonparam: 
+skip:
+namespaces: device_man_man
+testcases:
+  - url: /dt/szlj/api/cpe/v1/device/create
+    name: 设备新增
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"deviceName":"lc测试设备","deviceModel":"G5000-A04","factory":"cmiot","orgId":"${global_custCode}","imei":"{{GenerateRandomDigits}}"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/list
+    name: 设备查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&displayOriginalOperatingState=1'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/list
+    name: 设备按名称查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&deviceName=lc%E6%B5%8B%E8%AF%95%E8%AE%BE%E5%A4%87&operatingState=0&displayOriginalOperatingState=1'
+    next: imei
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/list
+    name: 设备按IMEI查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&imei=${imei}&operatingState=0&displayOriginalOperatingState=1'
+    next: id
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/list
+    name: 设备按状态查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=2&displayOriginalOperatingState=1'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/detail
+    name: 设备详情
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/rsrp
+    name: 性能监控-rsrp查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/flow
+    name: 数据统计-flow查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/wifi/list
+    name: wifi设置查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'protocolType=1&deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/blacklist/state
+    name: 黑白名单状态查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/blacklist/list
+    name: 黑白名单查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'protocolType=1&deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/update?id=${id}
+    name: 设备编辑
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+      action: PUT
+    method: POST
+    skip: 
+    data: '{"deviceName":"lc测试设备编辑","deviceModel":"G5000-A04","factory":"cmiot","imei":"${imei}","orgId":"${global_custCode}"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/delete
+    name: 设备删除
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: DELETE
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"

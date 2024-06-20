@@ -1,0 +1,45 @@
+name: 首页概览
+description: 首页概览场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/frontPage/getTheNumOfBaseStations
+    name: 查询网络资源总览
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-device/getDeviceOnlineList
+    name: 查询终端总览
+    headers:
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/frontPage/overviewOfActivatedIotCards
+    name: 查询物联卡业务总览
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/frontPage/neAlarmOverviewInfo
+    name: 查询告警总览
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"

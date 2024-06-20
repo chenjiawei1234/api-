@@ -1,0 +1,83 @@
+name: 终端管理-固件管理
+description: 终端管理-固件管理
+commonparam: 
+skip:
+namespaces: device_man_firm
+testcases:
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/list
+    name: 固件查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"","orgIds":["${global_LoginThirdOrgId}"]}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/afterUpAdd?firmwareName=lc%E6%B5%8B%E8%AF%95%E5%9B%BA%E4%BB%B6&factory=cmiot&deviceModel=G5000-A04&version=v1.1.25&orgId=${global_LoginThirdOrgId}&uploadType=1&url=www.cpeApi.com
+    name: 固件新增
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/list
+    name: 固件按名称查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"lc测试固件","orgIds":["${global_LoginThirdOrgId}"]}'
+    next: id
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/list
+    name: 固件按启用状态查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"","usable":1,"orgIds":["${global_LoginThirdOrgId}"]}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/detail
+    name: 固件详情
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"fid":${id}}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/ban
+    name: 固件禁用
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"fid":${id},"usable":0,"orgId":"${global_LoginThirdOrgId}"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/ota/firmware/delete
+    name: 固件删除
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'fids=${id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"

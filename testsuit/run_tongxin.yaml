@@ -1,0 +1,11 @@
+name: 企业平台山西同忻煤矿生产自动化测试
+before: LoginToken#ApiToken
+env:
+  baseurl: http://183.203.101.35:8007
+  username: huzhixiang
+  password: YmIwYTZlYWNhNDZiNDA2ZTEwNjg0YWVkMGMzZDZmYmU=
+  imageId: "520"
+headers:
+  Onecybertoken: ${onecyberToken}
+runpath: testsuit/sx_tongxin
+after: 

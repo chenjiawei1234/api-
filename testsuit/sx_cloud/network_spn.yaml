@@ -1,0 +1,33 @@
+name: 传输网元
+description: 传输网元场景
+commonparam:
+skip:
+namespaces: spn
+testcases:
+  - url: /api/network/transmissionNetwork/transmissionNetworkList
+    name: 查询传输网信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: spnName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/transmissionNetwork/uplinkAndDwnlinkRate
+    name: 传输网传输速率性能
+    headers:
+    method: POST
+    skip: 
+    data: '{"neName":"${spnName}","startTime":"{{TimesAlterTwoHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/transmissionNetwork/packetLossRateTrend
+    name: 传输网丢包率性能
+    headers:
+    method: POST
+    skip: 
+    data: '{"neName":"${spnName}","startTime":"{{TimesAlterTwoHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

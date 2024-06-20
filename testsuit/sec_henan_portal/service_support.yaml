@@ -1,0 +1,44 @@
+name: 服务与支持
+description: 服务与支持
+commonparam: 
+skip:
+namespaces: service_support
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: PortalSupportBanner
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"PortalSupportBanner"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: SupportContent
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"SupportContent"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/area/queryChildInfo
+    name: 省份信息查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"areaId":"1300"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/area/queryChildInfo
+    name: 地市信息查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"areaId":"1303"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+
+  

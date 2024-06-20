@@ -1,0 +1,127 @@
+name: 基站监控
+description: 基站监控场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/baseStation/overviewOfAllBaseStations
+    name: 查询基站概览
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 基站列表查询默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":"","alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择基站状态查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":2,"gnodebType":"","alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckRecords: '{"gnodebStatus":2}'
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择基站类型查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":1,"alarmStatus":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckRecords: '{"gnodebType":1}'
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 选择是否告警查询基站列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":"","gnodebType":"","alarmStatus":true,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 条件组合查询基站列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebStatus":2,"gnodebType":1,"alarmStatus":true,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckRecords: '{"gnodebStatus":2,"gnodebType":1}'
+  - url: /api/network/baseStation/queryTheLstOfAllBaseStations
+    name: 查询所有基站名称列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: gnodebId
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryTheDetailsOfASingleBaseStation
+    name: 查询单个基站详情
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebId":"${gnodebId}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/baseStationAlarmClasTbl
+    name: 查询单个基站告警列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"alarmStatus":1,"gnodebId":"${gnodebId}","pageIndex":1,"pageSize":9999}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/numOfUsersAccessingUsers
+    name: 查询基站接入用户数性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebId":"${gnodebId}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/avgRt
+    name: 查询基站平均速率性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebId":"${gnodebId}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/avgPrbUtilization
+    name: 查询基站PRB平均利用率性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"gnodebId":"${gnodebId}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+ 

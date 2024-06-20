@@ -1,0 +1,78 @@
+name: 网络状态监控
+description: 网络状态监控场景
+commonparam:
+skip:
+namespaces: network
+testcases:
+  - url: /api/network/upf/upfInfo
+    name: 查询upf信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"alarmStatus":"","upfStatus":"","pageSize":9999}'
+    next: upfName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/network/summary
+    name: 查询网络状态总览
+    headers:
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/network/topeGnodeCpe
+    name: 查询网络拓扑
+    headers:
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 查询基站信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"gnodebStatus":"","gnodebType":"","alarmStatus":"","pageSize":9999}'
+    next: gnodebId
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/queryTheDetailsOfASingleBaseStation
+    name: 查询单个基站信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebId":"${gnodebId}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/baseStationAlarmClasTbl
+    name: 查询单个基站下的告警信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"gnodebId":"2311291","pageIndex":1,"alarmStatus":1,"pageSize":9999}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfDetails
+    name: 查询单个upf信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"upfName":"${upfName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfAlarmLst
+    name: 查询单个upf告警信息
+    headers:
+    method: POST
+    skip: 
+    data: '{"upfName":"${upfName}","alarmStatus":1,"pageIndex":1,"pageSize":9999}'
+    next: 
+    check:
+      - CheckMessage: "success"

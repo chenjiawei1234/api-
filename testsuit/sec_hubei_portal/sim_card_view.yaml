@@ -1,0 +1,60 @@
+name: 物联卡概览
+description: 物联卡概览
+commonparam:
+skip:
+namespaces: sim_card_view
+testcases:
+  - url: /unionmallmanage/icm-npn/portal/card/queryDashboardData
+    name: 物联卡各生命状态统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}"}'
+    next: msisdn,imsi,iccid
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/querySimCount
+    name: 物联卡网络制式统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryDnnCount
+    name: DNN数量统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/queryAddedCardsBySixMonth
+    name: 每月新增开卡数
+    headers: 
+    method: GET
+    skip: 
+    data: 'headers=%5Bobject%20Object%5D'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/card/dataUsageProportion
+    name: 物联卡用量占比分析
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}&date=202310'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryDataUsage
+    name: 最近6个月流量使用统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

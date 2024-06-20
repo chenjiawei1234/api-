@@ -1,0 +1,70 @@
+name: 用户中心-子账号管理
+description: 用户中心-子账号管理
+commonparam: 
+skip:
+namespaces: user_center_user
+testcases:
+  - url: /unionmallmanage/onecyber/user/account/create
+    name: 新增子账号
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lc测试账号","phone":"","userGroupId":[],"userType":5}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 查询-默认条件
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&subAccount=true&name='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 查询-按名称
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&subAccount=true&name=lc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7'
+    next: username
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 查询（按用户名）
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&subAccount=true&username=${username}'
+    next: userId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}/resetDefaultPassword
+    name: 密码重置
+    headers:
+    method: PATCH
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}
+    name: 子账号编辑
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"name":"lc测试用户编辑","phone":null,"userGroupId":[],"userType":5,"userId":"${userId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}
+    name: 删除子账号
+    headers:
+    method: DELETE
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+ 

@@ -1,0 +1,123 @@
+name: 系统设置-管理员管理
+description: 系统设置-管理员管理
+commonparam:
+skip:
+namespaces: people_man
+testcases:
+  - url: /unionmallmanage/onecyber/user/role/list
+    name: 角色查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10000&status=1'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 管理员查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 管理员查询-按角色查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&roleId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 管理员查询-按启用状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&status=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getParentArea
+    name: 父组织查询
+    headers:
+    method: GET
+    skip: 
+    data: 'areaCode=5120'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/queryChildInfo
+    name: 子组织查询
+    headers:
+    method: GET
+    skip: 
+    data: 'parentAreaId=012'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/create
+    name: 管理员新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lc测试","username":"lccs","areaCode":"5120","email":"133@qq.com","phone":"13589898989","userGroupId":["${id}"],"level":"2","userType":3}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getAll
+    name: 管理员查询-按名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=10&name=lc%E6%B5%8B%E8%AF%95'
+    next: userId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}
+    name: 管理员编辑
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"name":"lc测试编辑","username":"lccs","areaCode":"5120","email":"133@qq.com","phone":"13589898989","userGroupId":["${id}"],"level":"2","userType":3,"userId":"${userId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}/resetDefaultPassword
+    name: 重置密码
+    headers:
+    method: PATCH
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}/changeState
+    name: 账号禁用
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}/changeState
+    name: 账号启用
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"status":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/${userId}
+    name: 管理员删除
+    headers:
+    method: DELETE
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"

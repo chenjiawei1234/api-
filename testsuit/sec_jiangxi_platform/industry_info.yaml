@@ -1,0 +1,60 @@
+name: 内容管理-行业信息管理
+description: 内容管理-行业信息管理
+commonparam:
+skip:
+namespaces: industry_info
+testcases:
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/list
+    name: 行业查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"industryName":null,"pageIndex":"0","pageSize":"10"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/create
+    name: 行业新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"industryName":"lc行业测试","industryId":"112233","status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/list
+    name: 行业查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"industryName":"lc行业测试","pageIndex":"0","pageSize":"10"}'
+    next: pkId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/list
+    name: 行业查询-按启用状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"industryName":null,"pageIndex":"0","pageSize":"10","status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/update
+    name: 行业修改
+    headers:
+    method: POST
+    skip: 
+    data: '{"industryName":"lc行业测试22","industryId":"112233","pkId":${pkId},"status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/delete
+    name: 行业删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"pkId":${pkId},"industryId":"112233"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

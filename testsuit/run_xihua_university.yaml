@@ -1,0 +1,11 @@
+name: 校园双域西华大学自动化测试
+before: Position
+env:
+  baseurl: https://onecyber.xhu.edu.cn:8002
+  username: admin
+  password: NGE4MTg5YTI3NDY0NDYxMzlhYTdjNTg4NjEyZGNjZTM=
+  imageId: ${imageId}
+headers:
+  Onecybertoken: ${onecyberToken}
+runpath: testsuit/sc_xihua
+after: 

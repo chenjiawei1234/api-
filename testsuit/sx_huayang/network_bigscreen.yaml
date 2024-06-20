@@ -1,0 +1,66 @@
+name: 专网数字大屏
+description: 专网数字大屏场景
+commonparam:
+skip:
+namespaces:
+testcases:
+  - url: /api/network/transmission/lifecycleStatuSummary
+    name: 查询传输网信息
+    headers:
+      Apitoken: ${apiToken}
+    method: GET
+    skip: 
+    data: 
+    next: spnName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/BigScr/gnodebList
+    name: 查询基站列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":100}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/alarmManagement/queryingFullAlarmInfo
+    name: 查询告警列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":100,"alarmStatus":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/BigScr/gnodebTypeSummary
+    name: 查询基站类型统计
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/BigScr/spnPktLostRateTrendForScreen
+    name: 查询传输网性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"neName":"${spnName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/baseStation/overviewOfAllBaseStations
+    name: 查询总览
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"

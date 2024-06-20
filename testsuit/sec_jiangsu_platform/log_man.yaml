@@ -1,0 +1,114 @@
+name: 系统设置-日志管理
+description: 系统设置-日志管理
+commonparam:
+skip:
+namespaces: log_man
+testcases:
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=&operType=&operatorType=0&status=&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 日志管理查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operType=&status=&page=1&pageSize=10&operName=&operatorType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按集团客户编码查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}&operType=&operatorType=0&status=&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按客户名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operName=%E4%B8%AD%E7%A7%BB%E7%89%A9%E8%81%94%E7%BD%91%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8&operType=&operatorType=0&status=&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按操作内容查询
+    headers:
+    method: GET
+    skip: 
+    data: 'title=%E7%99%BB%E5%BD%95&operType=&operatorType=0&status=&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按操作类型查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=&operType=2&operatorType=0&status=&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按操作状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=&operType=&operatorType=0&status=0&page=1&pageSize=10'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 客户日志管理查询-按操作时间查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=&operType=&operatorType=0&status=&page=1&pageSize=10&startTime=2024-04-01%2000%3A00%3A00&endTime=2024-04-30%2023%3A59%3A59'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 日志管理查询-按账号名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operType=&status=&page=1&pageSize=10&operName=${global_username}&operatorType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 日志管理查询-按操作类型查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operType=0&status=&page=1&pageSize=10&operName=&operatorType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 日志管理查询-按操作状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operType=&status=1&page=1&pageSize=10&operName=&operatorType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/sm/sysOperStandardLog/list
+    name: 日志管理查询-按操作时间查询
+    headers:
+    method: GET
+    skip: 
+    data: 'operType=&status=&page=1&pageSize=10&operName=&operatorType=1&startTime=2024-04-01%2000%3A00%3A00&endTime=2024-04-30%2023%3A59%3A59'
+    next: 
+    check:
+      - CheckMessage: "成功"

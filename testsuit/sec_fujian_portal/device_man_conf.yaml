@@ -1,0 +1,106 @@
+name: 终端管理-配置管理
+description: 终端管理-配置管理
+commonparam: 
+skip:
+namespaces: device_man_conf
+testcases:
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/create
+    name: 规则新增
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"name":"lc测试规则","description":"lc测试规则","ownerId":"${global_custCode}"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/list
+    name: 规则查询-默认查询规则
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'pageSize=10&currentPage=1&name=&ownerId='
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/list
+    name: 规则查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'pageSize=10&currentPage=1&name=lc%E6%B5%8B%E8%AF%95%E8%A7%84%E5%88%99&ownerId='
+    next: data.id
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/detail
+    name: 规则详情
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'id=${data_id}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/device/associated
+    name: 关联设备查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'pageSize=10&currentPage=1&ruleId=${data_id}&imei='
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/count
+    name: 规则数量
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/dnn/update
+    name: 路由新增
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"dnnReqs":[{"ruleId":"${data_id}","dnn":"CMIOT5G","ip":"0","orderNum":0},{"dnn":"CMIOT5G","ip":"1.1.1.1/24"}],"ruleId":"${data_id}"}'
+    next: imei
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/update
+    name: 规则编辑
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '{"name":"lc测试规则编辑","description":"lc测试规则","id":"${data_id}"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /unionmallmanage/cpeApi/cpe/v1/rule/delete
+    name: 规则删除
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: POST
+    skip: 
+    data: '["${data_id}"]'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  

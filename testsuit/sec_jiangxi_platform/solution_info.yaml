@@ -1,0 +1,105 @@
+name: 内容管理-解决方案
+description: 内容管理-解决方案
+commonparam:
+skip:
+namespaces: solution_info
+testcases:
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo
+    name: 配置查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryId":null,"solutionName":"","solutionStatus":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo
+    name: 解决方案查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":999}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/createSolutionInfo
+    name: 解决方案新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionTitle":"lc解决方案测试","industryId":"15","solutionContent":"lc解决方案测试","solutionDetailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773089189429b00f3-c29f-4bcf-90b5-6862429ed015.png","solutionBannerPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731044067256c4c5-a21a-4fa8-99fd-b4128b21f2a9.jpg","solutionStatus":1,"solutionSuperiorityFormList":[{"solutionSuperiorityTitle":"lc解决方案测试","solutionSuperiorityContent":"lc解决方案测试"}],"smallSolutionFormList":[{"smallSolutionTitle":"lc解决方案测试","smallSolutionContent":"lc解决方案测试","smallSolutionPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773123884dade6426-d338-414a-87c1-ab5012b4fb46.png"}],"solutionApplicationScenariosFormList":[{"solutionApplicationScenariosTitle":"lc解决方案测试","solutionApplicationScenariosContent":"lc解决方案测试","solutionApplicationScenariosPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773140055a63200eb-8265-4a45-8c2a-a35e69e2baa5.png"}],"solutionCustomerCaseFormList":[{"solutionCustomerCaseTitle":"lc解决方案测试","solutionCustomerCaseContent":"lc解决方案测试","solutionCustomerCasePic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731487808be84c84-c863-4268-9408-c19dd9547549.png"}],"solutionPrivateNetworkFormList":[{"solutionPrivateContent":"lc解决方案测试","solutionPrivateNetworkYouxiang":"lc解决方案测试","solutionPrivateNetworkVip":"","solutionPrivateNetworkEnjoy":""}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo
+    name: 解决方案查询-按智慧文旅查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryId":"15","solutionName":"","solutionStatus":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo
+    name: 解决方案查询-按方案名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryId":null,"solutionName":"lc解决方案测试","solutionStatus":null}'
+    next: solutionId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo
+    name: 解决方案查询-按已发布状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"industryId":null,"solutionName":"","solutionStatus":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/updateSolutionInfo
+    name: 解决方案发布
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionId":"${solutionId}","solutionStatus":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/updateSolutionInfo
+    name: 解决方案下架
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionId":"${solutionId}","solutionStatus":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/updateSolutionInfo
+    name: 解决方案发布
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionId":"${solutionId}","solutionStatus":2}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/updateSolutionInfo
+    name: 解决方案编辑
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionTitle":"lc解决方案测试2","industryId":"智慧文旅","solutionContent":"lc解决方案测试","solutionDetailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773089189429b00f3-c29f-4bcf-90b5-6862429ed015.png","solutionBannerPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731044067256c4c5-a21a-4fa8-99fd-b4128b21f2a9.jpg","solutionStatus":1,"solutionId":"${solutionId}","updateSolutionSuperiorityForms":[{"deleteFlag":null,"solutionSuperiorityId":"SOLUTIONSUPER2024042216055433707333","solutionSuperiorityTitle":"lc解决方案测试","solutionSuperiorityContent":"lc解决方案测试"}],"updateSmallSolutionForms":[{"smallSolutionId":"SMALLSOLUTION2024042216055434925191","smallSolutionTitle":"lc解决方案测试","smallSolutionContent":"lc解决方案测试","smallSolutionPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773123884dade6426-d338-414a-87c1-ab5012b4fb46.png"}],"updateSolutionPrivateNetworkForms":[{"solutionPrivateNetworkId":"PRIVATENETWORK2024042216055431790373","solutionPrivateContent":"lc解决方案测试","solutionPrivateNetworkYouxiang":"lc解决方案测试","solutionPrivateNetworkVip":"","solutionPrivateNetworkEnjoy":""}],"updateSolutionApplicationForms":[{"deleteFlag":null,"solutionApplicationId":"SOLUTIONAPPLICATION2024042216055448892368","solutionApplicationTitle":"lc解决方案测试","solutionApplicationContent":"lc解决方案测试","solutionApplicationPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773140055a63200eb-8265-4a45-8c2a-a35e69e2baa5.png"}],"updateSolutionCustomerCaseForms":[{"deleteFlag":null,"solutionCustomerCaseId":"SOLUTIONCUSTOMER2024042216055492718881","solutionCustomerCaseTitle":"lc解决方案测试","solutionCustomerCaseContent":"lc解决方案测试","solutionCustomerCasePic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731487808be84c84-c863-4268-9408-c19dd9547549.png"}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/updateSolutionInfo
+    name: 解决方案删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionId":"${solutionId}","solutionTitle":"lc解决方案测试2","solutionContent":"lc解决方案测试","industryId":"智慧文旅","industryName":"15","solutionDetailPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773089189429b00f3-c29f-4bcf-90b5-6862429ed015.png","solutionBannerPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731044067256c4c5-a21a-4fa8-99fd-b4128b21f2a9.jpg","solutionDescribe":null,"solutionFramework":null,"solutionStatus":"1","solutionLabel":null,"createTime":"2024-04-22 16:05:54","createUser":"lctest","hotRecommendFlag":"0","specialAreaFlag":"0","solutionSuperiorityFormList":[{"solutionSuperiorityId":"SOLUTIONSUPER2024042216055433707333","solutionId":"SOLUTION2024042216055414585865","solutionSuperiorityTitle":"lc解决方案测试","solutionSuperiorityContent":"lc解决方案测试"}],"solutionApplicationScenariosFormList":[{"solutionApplicationScenariosId":"SOLUTIONAPPLICATION2024042216055448892368","solutionId":"SOLUTION2024042216055414585865","solutionApplicationScenariosTitle":"lc解决方案测试","solutionApplicationScenariosContent":"lc解决方案测试","solutionApplicationScenariosPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773140055a63200eb-8265-4a45-8c2a-a35e69e2baa5.png"}],"smallSolutionInfos":[{"smallSolutionId":"SMALLSOLUTION2024042216055434925191","solutionId":"SOLUTION2024042216055414585865","smallSolutionTitle":"lc解决方案测试","smallSolutionContent":"lc解决方案测试","smallSolutionPic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=1713773123884dade6426-d338-414a-87c1-ab5012b4fb46.png","createUser":null}],"solutionCustomerCaseInfos":[{"solutionId":"SOLUTION2024042216055414585865","solutionCustomerCaseId":"SOLUTIONCUSTOMER2024042216055492718881","solutionCustomerCaseTitle":"lc解决方案测试","solutionCustomerCaseContent":"lc解决方案测试","solutionCustomerCasePic":"/unionmallmanage/pm-npn/portal/fileOps/picSrc?path=17137731487808be84c84-c863-4268-9408-c19dd9547549.png","createUser":null}],"solutionPrivateNetworkInfos":[{"solutionId":"SOLUTION2024042216055414585865","solutionPrivateNetworkId":"PRIVATENETWORK2024042216055431790373","solutionPrivateContent":"lc解决方案测试","solutionPrivateNetworkYouxiang":"lc解决方案测试","solutionPrivateNetworkVip":"","solutionPrivateNetworkEnjoy":"","createUser":null}],"deleteFlag":"true"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

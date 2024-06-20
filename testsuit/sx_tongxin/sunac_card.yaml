@@ -1,0 +1,146 @@
+name: 融创卡管理
+description: 融创卡管理场景
+commonparam:
+skip:
+namespaces: sunac
+testcases:
+  - url: /api/connection/sunac/cardTypeCount
+    name: 查询融创卡权限分布
+    headers:
+      Apitoken: ${apiToken}
+    method: GET
+    skip:
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardCycleCount
+    name: 查询融创卡生命周期分布
+    headers:
+      Apitoken: ${apiToken}
+    method: GET
+    skip:
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardList
+    name: 查询融创卡列表默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"cardType":"","cardStatus":"","msisdn":"","pageSize":10,"pageNum":1}'
+    next: msisdn
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardList
+    name: 选择权限类型查询融创卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"cardType":1,"cardStatus":"","msisdn":"","pageSize":10,"pageNum":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardList
+    name: 选择卡状态查询融创卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"cardType":"","cardStatus":1,"msisdn":"","pageSize":10,"pageNum":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardList
+    name: 输入卡号查询融创卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"cardType":"","cardStatus":"","msisdn":"${msisdn}","pageSize":10,"pageNum":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardList
+    name: 组合条件查询融创卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"cardType":1,"cardStatus":2,"msisdn":"${msisdn}","pageSize":10,"pageNum":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/cardDetail
+    name: 融创卡详情
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"msisdn":"${msisdn}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderList
+    name: 短号变更工单列表查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyStatus":"","applyNum":"","applyType":"6","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderList
+    name: 权限升级工单列表查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyStatus":"","applyNum":"","applyType":"2","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderList
+    name: 停复机申请工单列表查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyStatus":"","applyNum":"","applyType":"5","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderList
+    name: 选择工单状态查询工单列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyStatus":"0","applyNum":"","applyType":"5","pageSize":10,"pageIndex":1}'
+    next: applyNum
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderList
+    name: 输入工单号查询工单列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyStatus":"","applyNum":"${applyNum}","applyType":"5","pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/sunac/workorderDetail
+    name: 工单详情无工单号
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip:
+    data: '{"applyNum":"${applyNum}"}'
+    next: 
+    check:
+      - CheckMessage: "请输入正确的工单号"

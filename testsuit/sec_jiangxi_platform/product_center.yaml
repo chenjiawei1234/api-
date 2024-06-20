@@ -1,0 +1,114 @@
+name: 产品中心
+description: 产品中心
+commonparam:
+skip:
+namespaces: product_center
+testcases:
+  - url: /unionmallmanage/pm-npn/web/product/pageQueryPropValue
+    name: 属性查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"account":"${global_username}","productPropsName":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQueryPropValue
+    name: 属性查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"account":"${global_username}","productPropsName":"上行带宽"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/skuStatus
+    name: 商品状态查询
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySku
+    name: 商品列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"account":"${global_username}","status":null,"productName":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySku
+    name: 商品列表查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"account":"${global_username}","status":null,"productName":"定制服务"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySku
+    name: 商品列表查询-按已上架状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"account":"lctest","status":"2","productName":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQueryCustomized
+    name: 产品使用信息配置查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"customizedPropsName":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQueryCustomized
+    name: 产品使用信息配置查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"customizedPropsName":"测试"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/portal/product/categoryInfo
+    name: 类目查询
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySpu
+    name: 产品查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"productName":null,"status":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySpu
+    name: 产品查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"productName":"定制服务","status":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/pm-npn/web/product/pageQuerySpu
+    name: 产品查询-按已上架状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"productName":null,"status":"2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

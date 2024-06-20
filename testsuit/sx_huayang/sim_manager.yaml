@@ -1,0 +1,87 @@
+name: SIM卡管理
+description: SIM卡管理场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/connection/oper-sim/getSimTypeSummary
+    name: 查询SIM卡类型分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimLifeStatusSummary
+    name: 查询SIM卡生命周期分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 查询SIM卡列表默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"cardType":"","status":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡类型查询SIM卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"cardType":2,"status":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡状态查询SIM卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"cardType":"","status":2,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡类型和卡状态查询SIM卡列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"cardType":1,"status":2,"pageIndex":1,"pageSize":10}'
+    next: msisdn
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/sliceList
+    name: SIM卡关联切片查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-dnn/getDnnList
+    name: SIM卡DNN列表查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data:
+      msisdn: ${msisdn}
+    next: 
+    check:
+      - CheckMessage: "success"

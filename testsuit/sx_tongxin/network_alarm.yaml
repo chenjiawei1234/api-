@@ -1,0 +1,66 @@
+name: 告警管理
+description: 告警管理场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/alarmManagement/queryingAlarmDistribution
+    name: 查询告警分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"startTime":"","endTime":""}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/alarmManagement/queryingAlarmDistribution
+    name: 查询告警分布按时间搜索
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/alarmManagement/queryingFullAlarmInfo
+    name: 查询全部告警
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"alarmStatus":"","alarmLevel":"","alarmNeName":""}'
+    next: level
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/alarmManagement/queryingFullAlarmInfo
+    name: 查询活动告警
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"alarmStatus":1,"alarmLevel":"","alarmNeName":""}'
+    next: 
+    check:
+      - CheckRecords: '{"alarmStatus":1}'
+  - url: /api/network/alarmManagement/queryingFullAlarmInfo
+    name: 查询历史告警
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"alarmStatus":0,"alarmLevel":"","alarmNeName":""}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/alarmManagement/queryingFullAlarmInfo
+    name: 按告警级别查询告警
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"alarmStatus":"","alarmLevel":"${level}","alarmNeName":""}'
+    next: 
+    check:
+      - CheckMessage: "success"

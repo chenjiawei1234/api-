@@ -1,0 +1,70 @@
+name: 安全管理-角色管理
+description: 安全管理-角色管理场景
+commonparam:
+  roleName: "testrole143123523"
+skip:
+namespaces: role
+testcases:
+  - url: /api/auth/menu/tree
+    name: 查询菜单权限树
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/create
+    name: 添加角色
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"${roleName}","menuIds":["10000","0","9999","11000"]}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/list
+    name: 分页查询角色
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&name='
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/list
+    name: 输入角色名称查询角色
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&name=${roleName}'
+    next: list.id
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/update
+    name: 修改角色
+    headers:
+    method: PUT
+    skip: 
+    data: '{"name":"testrole143123523_new","detail":"描述111","menuIds":["10000","21100","0","20000","21000","9999","11000","21110","21120"],"id":"${list_id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/list
+    name: 修改后名称查询角色
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&name=testrole143123523_new'
+    next: 
+    check:
+      - CheckRecords: '{"name":"testrole143123523_new","detail":"描述111"}'
+  - url: /api/auth/role/del
+    name: 删除角色
+    headers:
+    method: DELETE
+    skip: 
+    data: 'roleId=${list_id}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"

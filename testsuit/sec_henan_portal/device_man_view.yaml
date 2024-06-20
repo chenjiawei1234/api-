@@ -1,0 +1,105 @@
+name: 终端管理-数据概览
+description: 终端管理-数据概览
+commonparam:
+skip:
+namespaces: device_man_view
+testcases:
+  - url: /dt/szlj/api/cpe/v1/data/device/deviceCount
+    name: 设备数量
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/onlineCount
+    name: 设备在线数量
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count/model
+    name: 设备型号分布
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'operatingState=0'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count/model
+    name: 在线设备型号分布
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'operatingState=2'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count/sysmode
+    name: 网络类型分布
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/device/manufactureInfo
+    name: 设备型号查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count
+    name: 24小时设备在线趋势
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'type=0'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count
+    name: 设备型近30天设备在线趋势号查询
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'type=3'
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /dt/szlj/api/cpe/v1/data/device/count/flow
+    name: 各分组数据用量
+    headers:
+      onecyberToken: ${LoginThirdToken}
+      platform: 1
+    method: GET
+    skip: 
+    data: 'type=1'
+    next: 
+    check:
+      - CheckMessage: "操作成功"

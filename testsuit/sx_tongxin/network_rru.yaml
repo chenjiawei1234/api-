@@ -1,0 +1,106 @@
+name: RRU监控
+description: RRU监控场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/rru/lifecycleStatuSummary
+    name: 查询RRU在网状态分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/alarmLevelStatus
+    name: 查询RRU告警分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruList
+    name: RRU列表查询默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"alarmStatus":"","rruName":"","lifecycleStatus":"","pageSize":10}'
+    next: rruName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruList
+    name: 输入RRU名称查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"alarmStatus":"","rruName":"${rruName}","lifecycleStatus":"","pageSize":10}'
+    next: 
+    check:
+      - CheckRecords: '{"rruName":"${rruName}"}'
+  - url: /api/network/rru/queryRruList
+    name: 选择RRU在网状态查询
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"alarmStatus":"","rruName":"","lifecycleStatus":2,"pageSize":10}'
+    next: 
+    check:
+      - CheckRecords: '{"lifecycleStatus":2}'
+  - url: /api/network/rru/queryRruList
+    name: 选择是否告警查询RRU
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"alarmStatus":0,"rruName":"","lifecycleStatus":"","pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruList
+    name: 条件组合查询RRU列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"alarmStatus":0,"rruName":"${rruName}","lifecycleStatus":2,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruNames
+    name: 查询所有RRU名称列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruAlarmDetail
+    name: 查询RRU告警
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"rruName":"${rruName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/rru/queryRruDetail
+    name: 查询RRU详情
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"rruName":"${rruName}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

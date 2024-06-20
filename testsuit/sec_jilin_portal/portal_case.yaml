@@ -1,0 +1,34 @@
+name: 门户-客户案例
+description: 门户-客户案例
+commonparam: 
+skip:
+namespaces: portal_case
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 客户案例
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"PortalCaseBanner"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/case/queryList
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":9999}'
+    next: caseId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/case/queryCaseInfo
+    name: 详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

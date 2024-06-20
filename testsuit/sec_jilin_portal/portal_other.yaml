@@ -1,0 +1,43 @@
+name: 门户-首页
+description: 门户-首页
+commonparam: 
+skip:
+namespaces: portal_other
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: PortalBanner
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"PortalBanner"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: RecommendProduct
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"RecommendProduct"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: CyberProductIntroduction
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"CyberProductIntroduction"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: CyberProductRecommend
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"CyberProductRecommend"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

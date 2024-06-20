@@ -1,0 +1,368 @@
+name: 双域专网白名单信息
+description: 查询白名单信息
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/school/whiteList/product
+    name: 查询产品实例ID
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: productId
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页默认条件查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选未审核状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "1", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选未签约状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "3", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选签约中状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "4", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选已签约状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "2", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选未通过状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "5", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选签约失败状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "6", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选退订中状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "7", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选退订失败状态查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "8", paymentMethod: "", namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选个人付费方式查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: 0, namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页选择筛选统一付费方式查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: 1, namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页输入手机号查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: "", namePhone: "15111196532"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页输入姓名查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: "", namePhone: "阿卡"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页组合条件状态和付费方式查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "3", paymentMethod: 1, namePhone: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页组合条件状态和手机号查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "3", paymentMethod: "", namePhone: "15566632579"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页组合付费方式和手机号查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "", paymentMethod: 0, namePhone: "15566632579"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/whitelistListPagination
+    name: 白名单列表分页组合状态、付费方式和手机号查询
+    headers:
+      Productid: ${productId}
+      Apitoken: 
+    method: POST
+    Origin: https://onecyber.xhu.edu.cn:8002
+    skip: 
+    data: {pageSize: 10, pageIndex: 1, status: "3", paymentMethod: 1, namePhone: "15152366692"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+      
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_手机号为空
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_手机号为空.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "手机号不能为空"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_帐号为空
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_帐号为空.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "账号（学工号）不能为空"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_导入重复手机号
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_导入重复手机号.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "13693469146手机号已存在，请勿重复导入"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_导入重复帐号
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_导入重复帐号.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "AA账号（学工号）已存在，请勿重复导入"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_手机号输入中文
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_手机号输入中文.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "中文电话格式不合法，请检查后重试！"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单异常流程_手机号输入特殊字符
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板_手机号输入特殊字符.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "@@电话格式不合法，请检查后重试！"
+  - url: /api/school/whiteList/importBatchAdd
+    name: 批量导入添加白名单正常流程
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单添加模板.xlsx"}'
+    next: id
+    check:
+      - CheckMessage: "添加成员成功，是否进入订购"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑白名单信息的姓名
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡1", sex: false, role: 0, accountName: "0120241001",mailbox: null}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑修改白名单信息的性别
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡1", sex: true, role: 0, accountName: "0120241001",mailbox: null}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑修改白名单信息的角色
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡1", sex: true, role: 1, accountName: "0120241001",mailbox: null}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑添加白名单信息的邮箱
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡1", sex: true, role: 1, accountName: "0120241001",mailbox: "12@163.com"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑添加白名单信息的角色和邮箱
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡1", sex: true, role: 0, accountName: "0120241001",mailbox: "1662@163.com"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/editMemberInformation
+    name: 编辑添加白名单信息的姓名和性别
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {id: "${id}", name: "阿卡12", sex: false, role: 0, accountName: "0120241001",mailbox: "1662@163.com"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/batchDeleteImport
+    name: 批量删除白名单
+    headers:
+      Productid: ${productId}
+    method: UPLOAD
+    skip: 
+    data:
+      files: '{"file":"testsuit/sc_xihua/白名单批量删除模板.xlsx"}'
+    next: 
+    check:
+      - CheckMessage: "操作成功"

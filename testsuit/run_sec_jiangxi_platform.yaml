@@ -1,0 +1,52 @@
+name: 江西省平台运管自动化测试
+before: OnecyberLogin
+# env:
+#   platform_type: "platform" # 门户portal 运管platform
+#   env: "test" # test pre prod
+#   baseurl: http://10.12.63.250:30364
+#   username: lctestjx
+#   username_enc: 1
+#   password: 05ecy!3eR
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "791"
+#   custcode_real: '250444449250000222'
+# headers:
+#   token: ${token}
+# runpath: testsuit/sec_jiangxi_platform
+# after: 
+# env:
+#   platform_type: "platform" # 门户portal 运管platform
+#   env: "pre" # test pre prod
+#   baseurl: http://10.12.6.61:8151
+#   username: OCB1001772397
+#   username_enc: 1
+#   password: 05ecy!3eR
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "100"
+# headers:
+#   token: ${token}
+# runpath: testsuit/sec_jiangxi_platform/sim_card_man.yaml
+# after: 
+env:
+  platform_type: "platform" # 门户portal 运管platform
+  env: "prod" # test pre prod
+  baseurl: http://117.168.11.69:8002
+  username: lctest_jx
+  username_enc: 1
+  password: 05ecy!3eR
+  password_enc: 1
+  login_type: onecyber_2_onelink
+  custCode: "002210001230230000"
+  custId: "411000004476000"
+  beId: "791"
+  custcode_real: '250213204250250000'
+headers:
+  token: ${token}
+runpath: testsuit/sec_jiangxi_platform
+after: 

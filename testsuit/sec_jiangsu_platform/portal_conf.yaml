@@ -1,0 +1,51 @@
+name: 配置管理-门户主页配置
+description: 配置管理-门户主页配置
+commonparam:
+skip:
+namespaces: portal_conf
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/listAllTypesByPage
+    name: 配置查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/add
+    name: 配置新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeName":"lc配置测试","infoTypeCode":"lcpzcs","baseList":[{"infoContent":"测试1","infoRemark":"","infoJumpUrl":"","infoOrder":1,"infoPicBase64":""},{"infoContent":"测试2","infoRemark":"","infoJumpUrl":"","infoOrder":2,"infoPicBase64":""}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/detail
+    name: 配置详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"lcpzcs"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/update
+    name: 配置编辑
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeName":"lc配置测试","infoTypeCode":"lcpzcs","baseList":[{"infoContent":"测试1","infoRemark":"","infoJumpUrl":"","infoOrder":1,"infoPicBase64":""}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/delete
+    name: 配置删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"lcpzcs"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

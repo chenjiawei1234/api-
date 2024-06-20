@@ -1,0 +1,24 @@
+name: 用户中心-我的订单
+description: 用户中心-我的订单
+commonparam: 
+skip:
+namespaces: user_center_ord
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/queryOsmsOrder
+    name: 按订单状态查询（开通成功）
+    headers:
+    method: POST
+    skip: 
+    data: '{"tid":"","startDate":"","endDate":"","pageIndex":0,"pageSize":10,"random":0.829702613306917,"status":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/queryOsmsOrder
+    name: 按订单日期查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"startDate":"2023-11-01 00:00:00","endDate":"2023-11-30 23:59:59","pageIndex":0,"pageSize":10,"random":0.019958701468001827,"status":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"

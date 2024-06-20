@@ -1,0 +1,118 @@
+name: 安全管理-用户管理
+description: 安全管理-用户管理场景
+commonparam:
+  userName: "testuser143123523"
+  tel: "18628372345"
+  realName: "接口用户"
+  email: "18628372345@163.com"
+skip:
+namespaces: user
+testcases:
+  - url: /api/auth/group/tree
+    name: 查询组织树获取组织id
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: childGroups.id
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/list
+    name: 查询角色获取角色id
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&name='
+    next: list.id
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/create
+    name: 添加用户
+    headers:
+    method: POST
+    skip: 
+    data: '{"email":"${email}","name":"${userName}","realName":"${realName}","roleIds":["${list_id}"],"telephone":"${tel}","remark":"自动化脚本创建","status":"NORMAL","groupIds":["${childGroups_id}"]}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/group/list
+    name: 查询用户默认条件
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=999'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list
+    name: 输入用户名查询用户
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&name=${userName}'
+    next: id
+    check:
+      - CheckRecords: '{"email":"${email}","name":"${userName}","realName":"${realName}","telephone":"${tel}","remark":"自动化脚本创建","status":"NORMAL"}'
+  - url: /api/auth/user/list
+    name: 输入姓名查询用户
+    headers:
+    method: GET
+    skip: 
+    data: 'pageNum=1&pageSize=10&realName=%E6%8E%A5%E5%8F%A3%E7%94%A8%E6%88%B7'
+    next: 
+    check:
+      - CheckRecords: '{"email":"${email}","name":"${userName}","realName":"${realName}","telephone":"${tel}","remark":"自动化脚本创建","status":"NORMAL"}'
+  - url: /api/auth/user/get-all
+    name: 查询单个用户详情信息
+    headers:
+    method: GET
+    skip: 
+    data: 'userId=${id}'
+    next: 
+    check:
+      - CheckJson: '{"email":"${email}","name":"${userName}","realName":"${realName}","telephone":"${tel}","remark":"自动化脚本创建","status":"NORMAL"}'
+  - url: /api/auth/user/update
+    name: 编辑用户
+    headers:
+    method: PUT
+    skip: 
+    data: '{"email":"18581568745@yeah.net","name":"${userName}","realName":"${realName}","roleIds":["${list_id}"],"telephone":"18581568745","remark":"自动化脚本创建11","status":"NORMAL","groupIds":["${childGroups_id}"],"password":"${global_password}","id":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/update
+    name: 禁用用户
+    headers:
+    method: PUT
+    skip: 
+    data: '{"status":"SUSPEND","id":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/update
+    name: 启用用户
+    headers:
+    method: PUT
+    skip: 
+    data: '{"status":"NORMAL","id":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/update
+    name: 重置密码
+    headers:
+    method: PUT
+    skip: 
+    data: '{"password":"YmIwYTZlYWNhNDZiNDA2ZTEwNjg0YWVkMGMzZDZmYmU=","id":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/del
+    name: 删除用户
+    headers:
+    method: DELETE
+    skip: 
+    data: '{"userId":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"

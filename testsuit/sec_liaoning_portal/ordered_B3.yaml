@@ -1,0 +1,15 @@
+name: 公网专用B3
+description: 专网专用实例
+commonparam:
+skip:
+namespaces: ordered_B3
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/queryProdInstList
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"businessPackage":"3","projectName":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"

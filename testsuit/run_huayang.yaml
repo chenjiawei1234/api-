@@ -1,0 +1,11 @@
+name: 企业平台山西华阳矿自动化测试
+before: LoginToken#ApiToken
+env:
+  baseurl: http://10.12.59.214:31793
+  username: huzhixiang
+  password: NWRhNjg0NzNlZDM2Y2NiYTJiNjA3YmIwZjhmOTM5ODc=
+  imageId: "1"
+headers:
+  Onecybertoken: ${onecyberToken}
+runpath: testsuit/sx_huayang
+after:

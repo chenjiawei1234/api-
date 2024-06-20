@@ -1,0 +1,50 @@
+name: 福建省平台前台自动化测试
+before: OnecyberLogin#LoginThirdToken
+# env:
+#   platform_type: "portal" # 门户portal 运管platform
+#   env: "test" # test pre prod
+#   baseurl: http://10.12.63.250:31710
+#   username: OCB1001772397
+#   username_enc: 1
+#   password: 05ecy!3eR
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "100"
+# headers:
+#   csttoken: ${token}
+# runpath: testsuit/sec_fujian_portal
+# after: 
+# env:
+#   platform_type: "portal" # 门户portal 运管platform
+#   env: "pre" # test pre prod
+#   baseurl: http://10.12.6.61:8151
+#   username: BE1001772397
+#   username_enc: 1
+#   password: 1qaz!QAZ
+#   password_enc: 1
+#   login_type: onecyber_2_onelink
+#   custCode: "100AIOT11000004556018DTt9V"
+#   custId: "9911000004702014"
+#   beId: "100"
+# headers:
+#   csttoken: ${token}
+# runpath: testsuit/sec_fujian_portal
+# after: 
+env:
+  platform_type: "portal" # 门户portal 运管platform
+  env: "prod" # test pre prod
+  baseurl: https://onecyber.fj.chinamobile.com
+  username: BE5918054766
+  username_enc: 1
+  password: Qipai@1979
+  password_enc: 1
+  login_type: onecyber_2_onelink
+  custCode: "591AIOT2021071317205333781"
+  custId: "9950000001031002"
+  beId: "591"
+headers:
+  csttoken: ${token}
+runpath: testsuit/sec_fujian_portal/home_view.yaml
+after: 

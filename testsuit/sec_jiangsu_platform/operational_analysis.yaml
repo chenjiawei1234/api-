@@ -1,0 +1,203 @@
+name: 业务发展统计-5G专网运营分析
+description: 业务发展统计-5G专网运营分析
+commonparam:
+skip:
+namespaces: operational_analysis
+testcases:
+  - url: /unionmallmanage/onecyber/user/customer/statistics/queryChildInfo
+    name: 地市查询
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail
+    name: 全网客户统计详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custName":"","beId":"${global_beId}","location":"","queryType":0,"packageType":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/orderinfo
+    name: 已订业务数量统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"beId":"${global_beId}","location":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/productinfo
+    name: 已订产品数量统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"beId":"${global_beId}","location":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail
+    name: 全网客户统计详情-按地市
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custName":"","beId":"${global_beId}","location":"${areaId}","queryType":0,"packageType":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail
+    name: 全网客户统计详情-按名称
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custName":"测试","beId":"250","location":"","queryType":0,"packageType":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail
+    name: 全网客户统计详情-按产品
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custName":"","beId":"250","location":"","queryType":0,"packageType":"2","businessPackage":"5"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail
+    name: 全网客户统计详情-按当月开卡数
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custName":"","beId":"250","location":"","queryType":"2","packageType":"0","queryDataStart":"0","queryDataEnd":"1000"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/orderinfo
+    name: 已订业务数量统计-按地市
+    headers:
+    method: POST
+    skip: 
+    data: '{"beId":"${global_beId}","location":"${areaId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/productinfo
+    name: 已订产品数量统计-按地市
+    headers:
+    method: POST
+    skip: 
+    data: '{"beId":"${global_beId}","location":"${areaId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/statistic/customer/analysis/export
+    name: 城市5G客户数量导出
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}&location=${areaId}&packageType=&businessPackage='
+    next: 
+    check:
+      - CheckHttpStatus: 200 
+  - url: /unionmallmanage/onecyber/user/customer/statistics/detail/export
+    name: 全网客户导出
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}&location=${areaId}&custName=&queryType=0'
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /unionmallmanage/onecyber/user/account/getCustomerInfoDesensitization
+    name: 客户信息查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}'
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/querySimCount
+    name: 卡数量查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/dnnCount
+    name: DNN数量查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/card/customer/sync/count
+    name: 切片数量查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/statistic/detail/productinfo
+    name: 已开通专网产品数量查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/om-npn/web/order/querySliceInstList
+    name: 已开通切片信息查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"custCode":"${global_custCode}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/groupBill
+    name: 费用情况查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/queryDataUsage
+    name: 5G卡数量总用量查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/icm/queryBusinessUserCountByStatus
+    name: 5G卡生命周期分布查询
+    headers:
+      Custcode: '${custCode}'
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"    
+  

@@ -1,0 +1,96 @@
+name: 5G快线-机卡绑定
+description: 5G快线-机卡绑定
+commonparam: 
+skip:
+namespaces: five_tariff_bind
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/deviceCount
+    name: 设备统计
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/bindStatus/num
+    name: 机卡绑定数量查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按在线状态查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=2&bindStatus=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按已绑定设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备型号查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&deviceModel=R10&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备名称
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&deviceName=lc%E6%B5%8B%E8%AF%95&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备IMEI
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&imei=147852369963258&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按ICCID
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&iccid=147852369963258&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按IMSI
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&bindStatus=2&imsi=147852369963258&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"

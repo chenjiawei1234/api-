@@ -1,0 +1,42 @@
+name: 物联卡概览
+description: 物联卡概览
+commonparam:
+skip:
+namespaces: sim_card_view
+testcases:
+  - url: /unionmallmanage/icm-npn/portal/card/queryDashboardData
+    name: 物联卡各生命状态统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}"}'
+    next: msisdn,imsi,iccid
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/querySimCount
+    name: 物联卡网络制式统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryDnnCount
+    name: DNN数量统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryDataUsage
+    name: 最近6个月流量使用统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${custId}","custCode":"${global_custCode}","beId":"${beId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

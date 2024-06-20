@@ -1,0 +1,123 @@
+name: 设备管理-群组管理
+description: 设备管理-群组管理
+commonparam: 
+skip:
+namespaces: device_group_man
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox/bypage
+    name: 分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&size=9999'
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox
+    name: 群组新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lcc测试群组","description":"lcc测试群组"}'
+    next: result.id
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox/bypage
+    name: 群组查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&size=10&name=lcc%E6%B5%8B%E8%AF%95%E7%BE%A4%E7%BB%84&order=&sort='
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox/bypage
+    name: 按关联设备数排序
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&size=10&name=&order=asc&sort=deviceCount'
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/v1/device
+    name: 设备新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"deviceName":"lcc测试设备","deviceModel":"G5000-A04","factory":"cmiot","groupId":"${result_id}","imei":"{{GenerateRandomDigits}}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备按名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&deviceName=lcc%E6%B5%8B%E8%AF%95%E8%AE%BE%E5%A4%87&operatingState=0&displayOriginalOperatingState=1'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 已关联设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=9999&groupIdOnebox=${result_id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/groupassociated/onebox/multi
+    name: 解除关联
+    headers:
+    method: DELETE
+    skip: 
+    data: 'deviceId=${id}&groupId=${result_id}'
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 未关联设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=9999&notgroupIdOnebox=-1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/groupassociated/onebox/multi?deviceId=${id}&groupId=${result_id}
+    name: 设备关联
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/delete
+    name: 设备删除
+    headers:
+    method: DELETE
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox
+    name: 群组编辑
+    headers:
+    method: DELETE
+    skip: 
+    data: 'id=${result_id}'
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/devicegroup/onebox
+    name: 群组删除
+    headers:
+    method: DELETE
+    skip: 
+    data: 'id=${result_id}'
+    next: 
+    check:
+      - CheckMessage: "succeed"

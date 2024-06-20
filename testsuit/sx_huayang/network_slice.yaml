@@ -1,0 +1,66 @@
+name: 切片监控
+description: 切片监控场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/sliceMonitoring/sliceList
+    name: 查询切片列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: snssai
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/sliceConnectionSuccessRt
+    name: 切片连接成功率
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"snssai":"${snssai}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/numOfSliceUsers
+    name: 切片用户数
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"snssai":"${snssai}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/sliceAvgRt
+    name: 切片平均速率
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"snssai":"${snssai}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/numOfOnlnUsersOfDnn
+    name: 切片DNN在线用户数
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"snssai":"${snssai}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/sliceMonitoring/networkPacketLossRt
+    name: 切片网络丢包率
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"snssai":"${snssai}","startTime":"{{TimesAlterHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

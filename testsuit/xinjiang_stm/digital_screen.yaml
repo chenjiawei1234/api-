@@ -1,0 +1,116 @@
+name: 数字大屏
+description: 数字大屏场景
+commonparam:
+skip:
+namespaces: digital
+testcases:
+  - url: /api/network/baseStation/queryFullBaseStationInfo
+    name: 基站信息
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimAllCount
+    name: 查询SIM卡数量
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimTypeSummary
+    name: 查询SIM卡类型分布
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/upf/upfInfo
+    name: 查询upf信息
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-dnn/getDnnNums
+    name: 获取DNN数量
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/boceTask/query
+    name: 查询FSD探针任务
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: external_id
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/getAlarm
+    name: 查询FSD告警列表
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/cpeList/query
+    name: 查询FSD cpe列表
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: serviceAddress
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/cpeCount/query
+    name: 查询FSD cpe数量
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/boceTaskResult/query
+    name: 查询FSD探针任务结果
+    headers: 
+    method: POST
+    skip: 
+    data: '{"test_id":"${external_id}","result_time":"lastTenMinute"}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/fsd/cpeFlow/query
+    name: 查询FSD 5G终端流量
+    headers: 
+    method: POST
+    skip: 
+    data: '{"cpe_ip":"${serviceAddress}","result_time":"lastTenMinute"}'
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"

@@ -1,0 +1,65 @@
+name: 安全管理-部门管理
+description: 安全管理-部门管理场景
+commonparam:
+  groupName: "testgroup143123523"
+  tel: "18628372345"
+  officer: "负责人1"
+  email: "18628372345@163.com"
+skip:
+namespaces: group
+testcases:
+  - url: /api/auth/group/tree
+    name: 查询组织树
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: childGroups.id
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/group/create
+    name: 新增部门
+    headers:
+    method: POST
+    skip: 
+    data: '{"groupName":"${groupName}","telephone":"${tel}","officer":"${officer}","email":"${email}","parentId":"${childGroups_id}"}'
+    next:
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/group/create
+    name: 新增部门名称重复
+    headers:
+    method: POST
+    skip:
+    data: '{"groupName":"${groupName}","telephone":"${tel}","officer":"${officer}","email":"${email}","parentId":"${childGroups_id}"}'
+    next:
+    check:
+      - CheckJson: '{"bizMessage":"用户组名不允许重复"}'
+  - url: /api/auth/group/list
+    name: 按部门名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=999&pageNum=1&groupName=${groupName}'
+    next: id
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/group/update
+    name: 修改部门
+    headers:
+    method: PUT
+    skip: 
+    data: '{"parentId":"${childGroups_id}","groupName":"testgroup143123523_new","email":"","officer":"","telephone":"","id":"${id}"}'
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/group/del
+    name: 删除部门
+    headers:
+    method: DELETE
+    skip: 
+    data:
+      groupId: ${id}
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"

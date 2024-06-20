@@ -1,0 +1,24 @@
+name: 公网公用B2
+description: 5G互联专线实例&RB无线资源保障实例
+commonparam:
+skip:
+namespaces: ordered_B2
+testcases:
+  - url: /unionmallmanage/om-npn/portal/order/inst/gbr/queryGbr
+    name: 5G互联专线实例-列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"projectName":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/portal/order/inst/prb/queryPrb
+    name: RB无线资源保障实例-列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"projectName":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"

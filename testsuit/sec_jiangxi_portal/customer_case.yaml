@@ -1,0 +1,25 @@
+name: 客户案例
+description: 客户案例
+commonparam:
+  roleName: "testrole143123523"
+skip:
+namespaces: customer_case
+testcases:
+  - url: /unionmallmanage/common-npn/portal/case/queryList
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":9999}'
+    next: caseId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/case/queryCaseInfo
+    name: 案例详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"caseId":"${caseId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

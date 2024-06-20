@@ -1,0 +1,72 @@
+name: 5G快线-已购服务
+description: 5G快线-已购服务
+commonparam:
+skip:
+namespaces: five_tariff_order
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&page=1'
+    next: imsi#id#msisdn
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/card/real-name/status/by-imsi/batch
+    name: 资费查询
+    headers:
+      custCode: "250A52310001543"
+    method: GET
+    skip: 
+    data: 'imsi=${imsi}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/detail
+    name: 设备详情
+    headers:
+    method: GET
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"  
+  - url: /unionmallmanage/onecyber/cpe/v1/device-model/list
+    name: 设备图片查询
+    headers:
+    method: GET
+    skip: 
+    data: 'manufacturer=&model=EG3141'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/queryDataUsageByMonth
+    name: 流量查询
+    headers:
+      custCode: "250A52310001543"
+    method: POST
+    skip: 
+    data: '{"accmTypeId":"2","msisdnList":["${msisdn}"],"queryDate":"202405"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/rsrp
+    name: rsrp性能查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/flow
+    name: flow性能查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

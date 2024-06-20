@@ -1,0 +1,43 @@
+name: 5G快线-网络配置管理
+description: 5G快线-网络配置管理
+commonparam:
+skip:
+namespaces: five_tariff_net_man
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/list
+    name: 配置管理-默认列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=10&currentPage=1&page=1&pageIndex=1&name=&ownerId=&custCode=&beId='
+    next:
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/create
+    name: 配置管理-新增规则
+    headers:
+    method: POST
+    skip: 
+    data: '{name: "test", description: "", ownerId: ""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/list
+    name: 配置管理-按规则名称列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=10&currentPage=1&page=1&pageIndex=1&name=test&ownerId=&custCode=&beId='
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/detail
+    name: 配置管理-查看配置管理详情
+    headers:
+    method: GET
+    skip: 
+    data: 'id=${id}'
+    next:
+    check:
+      - CheckMessage: "成功"
+# 缺删除相关，删除相关报错 ：【checkCustomer】正在访问的资源“/onecyber/cpe/v1/rule/delete”未被授权,请确认授权并重新登陆后再试！

@@ -1,0 +1,267 @@
+name: 5G快线
+description: 5G快线
+commonparam: 
+skip:
+namespaces: five_traiff
+testcases:
+  - url: /unionmallmanage/onecyber/cp/om/portal/a2/query
+    name: DNN查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}&pageIndex=1&pageSize=10&startDate='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/be/dict
+    name: 地市查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cp/om/portal/a2/query
+    name: DNN查询-按时间查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}&pageIndex=1&pageSize=10&startDate=2024-05-01%2000%3A00%3A00'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cp/om/portal/a2/query
+    name: DNN详情查询
+    headers:
+    method: GET
+    skip: 
+    data: 'custCode=${global_custCode}&pageNum=1&pageSize=1000&oid='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 5G卡通信管理
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&page=1&pageSize=10'
+    next: imei
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 5G卡通信管理-按IMEI查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&page=1&pageSize=10&imei=${imei}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/card/dnn/name/all
+    name: 批量通信管理-操作DNN查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/deviceCount
+    name: 设备数量
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/onlineCount
+    name: 设备在线数量
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&page=1'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/manufactureInfo
+    name: 设备型号查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备型号查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&deviceModel=G5000-A04&operatingState=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&deviceName=%E6%B5%8B%E8%AF%95&operatingState=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表查询-按设备imei查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&deviceName=${imei}&operatingState=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/rsrp
+    name: rsrp查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/flow
+    name: flow查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1&type=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/detail
+    name: 设备详情
+    headers:
+    method: GET
+    skip: 
+    data: 'id=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/card/page
+    name: 卡信息查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageIndex=1&pageSize=1&entityType=1&entityId='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/wifi/list?protocolType=1&deviceId=10004581
+    name: wifi查询
+    headers:
+    method: GET
+    skip: 
+    data: 'protocolType=1&deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/blacklist/list
+    name: 黑白名单查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}&protocolType=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/blacklist/state
+    name: 黑白名单设置查询
+    headers:
+    method: GET
+    skip: 
+    data: 'deviceId=${id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/create
+    name: 规则新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lc测试规则","description":"lc测试规则","ownerId":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/list
+    name: 规则查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=10&pageIndex=1&name=lc%E6%B5%8B%E8%AF%95%E8%A7%84%E5%88%99&ownerId='
+    next: data.id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/detail
+    name: 规则详情
+    headers:
+    method: GET
+    skip: 
+    data: 'id=${data_id}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/device/associated
+    name: 关联设备查询
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=10&pageIndex=1&ruleId=${data_id}&imei='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/count
+    name: 规则数量
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/dnn/update
+    name: 路由新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"dnnReqs":[{"ruleId":"${data_id}","dnn":"CMIOT5G","ip":"0","orderNum":0},{"dnn":"CMIOT5G","ip":"1.1.1.1/24"}],"ruleId":"${data_id}"}'
+    next: imei
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/update
+    name: 规则编辑
+    headers:
+    method: POST
+    skip: 
+    data: '{"name":"lc测试规则编辑","description":"lc测试规则","id":"${data_id}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/rule/delete
+    name: 规则删除
+    headers:
+    method: POST
+    skip: 
+    data: '["${data_id}"]'
+    next: 
+    check:
+      - CheckMessage: "成功"

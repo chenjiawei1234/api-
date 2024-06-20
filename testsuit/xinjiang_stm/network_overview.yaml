@@ -1,0 +1,36 @@
+name: 5G专网资源概览
+description: 5G专网资源概览场景
+commonparam:
+skip:
+namespaces: overview
+testcases:
+  - url: /api/network/frontPage/getTheNumOfBaseStations
+    name: 网络资源总览
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/frontPage/neAlarmOverviewInfo
+    name: 告警总览分布
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimBatchDataUsage
+    name: sim卡流量使用概览
+    headers: 
+    method: POST
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"

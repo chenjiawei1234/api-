@@ -1,0 +1,13 @@
+name: 吉林省平台前台自动化测试
+before: 
+env:
+  baseurl: http://10.12.63.250:32629
+  username: OCB1001772397
+  username_enc: 1
+  password: 05ecy!3eR
+  password_enc: 1
+  login_type: onecyber_2_onelink
+headers:
+  csttoken: ${token}
+runpath: testsuit/test.yaml
+after: 

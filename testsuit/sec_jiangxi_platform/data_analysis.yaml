@@ -1,0 +1,179 @@
+name: 业务发展统计-5G物联卡数据分析
+description: 业务发展统计-5G物联卡数据分析
+commonparam:
+skip:
+namespaces: data_analysis
+testcases:
+  - url: /unionmallmanage/onecyber/user/account/getLevelInfo
+    name: getLevelInfo
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/tariff/getPackageNameInfo
+    name: 流量包名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/tariff/getFlowInfo
+    name: 流量包大小查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/getLastSyncTime
+    name: 最新同步时间
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/account/getBeInfo
+    name: 省份信息查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/tariffGroup/list
+    name: 5G快线套餐查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=100'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistics/packageDistribution/overview
+    name: overview
+    headers:
+    method: GET
+    skip: 
+    data: 'tariffType=B1&page=1&pageSize=10&beId=250'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/customer/statistics/queryChildInfo
+    name: 地市信息查询
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}'
+    next: areaId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistics/getCustomerCount
+    name: 客户数量查询
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&beId=${global_beId}&location=&custName=&serviceNettype=01&startTime=2024-04-16%2000%3A00%3A00&endTime=2024-04-16%2023%3A59%3A59'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistics/getCustomerCount
+    name: 客户数量查询-按地市
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&beId=${global_beId}&location=${areaId}&custName=&serviceNettype=01&startTime=2024-04-16%2000%3A00%3A00&endTime=2024-04-16%2023%3A59%3A59'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/analysis
+    name: 5G物联卡发展趋势-按地区查询
+    headers:
+    method: GET
+    skip: 
+    data: 'dimension=01&province=${global_beId}&location=&serachCondition=01&cardType='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/analysis
+    name: 5G物联卡发展趋势-按时间查询
+    headers:
+    method: GET
+    skip: 
+    data: 'dimension=02&province=${global_beId}&location=&serachCondition=01&cardType='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/analysis
+    name: 5G物联卡发展趋势-按地市查询
+    headers:
+    method: GET
+    skip: 
+    data: 'dimension=02&province=${global_beId}&location=${areaId}&serachCondition=01&cardType='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/analysis
+    name: 5G物联卡发展趋势-按物联卡套餐类型查询
+    headers:
+    method: GET
+    skip: 
+    data: 'dimension=02&province=${global_beId}&location=${areaId}&serachCondition=02&cardType='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/overview
+    name: 年度目标
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}&location='
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/overview
+    name: 年度目标-按地市
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}&location=${areaId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/set
+    name: 年度目标设置
+    headers:
+    method: POST
+    skip: 
+    data: '{"firstQuarterTarget":"111","secondQuarterTarget":"222","thirdQuarterTarget":"333","fourthQuarterTarget":"444","totalTarget":1110,"beId":"${global_beId}","location":"${areaId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/icm/statistic/card/export?province=250&location=
+    name: 物联卡发展趋势统计导出
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=${global_beId}&location=${areaId}'
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /unionmallmanage/onecyber/icm/statistics/getCustomerCountExcle
+    name: 物联卡开卡数量统计导出
+    headers:
+    method: GET
+    skip: 
+    data: 'beId=250&location=&custName=&serviceNettype=01&startTime=2024-04-16%2000%3A00%3A00&endTime=2024-04-16%2023%3A59%3A59'
+    next: 
+    check:
+      - CheckHttpStatus: 200
+
+  

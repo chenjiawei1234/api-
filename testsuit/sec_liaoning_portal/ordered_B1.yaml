@@ -1,0 +1,33 @@
+name: 公网公用B1
+description: 物联卡资费&群组资费
+commonparam:
+skip:
+namespaces: ordered_B1
+testcases:
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}"}'
+    next: msisdn
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryGroupOfferingInfo
+    name: 群组资费
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${global_custId}","custCode":"${global_custCode}","beId":"${beId}","params":{"pageIndex":1,"pageSize":10}}'
+    next: msisdn
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/querySimCardOfferingInfo
+    name: 按msisdn查询卡资费
+    headers:
+    method: POST
+    skip: 
+    data: '{"custId":"${global_custId}","custCode":"${global_custCode}","custId":"${global_custId}","pageIndex":1,"pageSize":10,"status":"2","entityId":"${msisdn}","params":{"pageIndex":1,"pageSize":10,"msisdn":"${msisdn}"}}'
+    next: 
+    check:
+      - CheckMessage: "成功"

@@ -1,0 +1,78 @@
+name: 性能管理
+description: 性能管理
+commonparam: 
+skip:
+namespaces: performance_man
+testcases:
+  - url: /unionmallmanage/standard/mmnpn/api/agent/portal/queryPage
+    name: 探针查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/task/list
+    name: 拨测任务查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageNum":1,"pageSize":10,"mainStatus":null,"taskNameOrTestTarget":null,"startTime":"","endTime":""}'
+    next: pkId
+    check:
+      - CheckMessage: "查询成功！"
+  - url: /unionmallmanage/standard/mmnpn/task/list
+    name: 拨测任务查询-按已完成状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageNum":1,"pageSize":10,"mainStatus":1,"taskNameOrTestTarget":null,"startTime":"","endTime":""}'
+    next: 
+    check:
+      - CheckMessage: "查询成功！"
+  - url: /unionmallmanage/standard/mmnpn/task/list
+    name: 拨测任务查询=按周期执行条件查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageNum":1,"pageSize":10,"mainStatus":null,"taskNameOrTestTarget":null,"startTime":"","endTime":"","executionCondition":3}'
+    next: 
+    check:
+      - CheckMessage: "查询成功！"
+  - url: /unionmallmanage/standard/mmnpn/task/list
+    name: 拨测任务查询=按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageNum":1,"pageSize":10,"mainStatus":null,"taskNameOrTestTarget":"测试","startTime":"","endTime":""}'
+    next: 
+    check:
+      - CheckMessage: "查询成功！"
+  - url: /unionmallmanage/standard/mmnpn/task/list
+    name: 拨测任务查询=按时间查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageNum":1,"pageSize":10,"mainStatus":null,"taskNameOrTestTarget":null,"startTime":"2024-05-01 00:00:00","endTime":"2024-05-31 00:00:00"}'
+    next: 
+    check:
+      - CheckMessage: "查询成功！"
+  - url: /unionmallmanage/standard/mmnpn/api/agent/portal/queryListByCst
+    name: 拨测任务中的探针
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/task/getTaskNames
+    name: 查询未完成任务名称
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "查询未完成任务名称成功"

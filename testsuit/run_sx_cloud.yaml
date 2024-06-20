@@ -1,0 +1,14 @@
+name: 山西云化版生产自动化测试
+before: OnecyberLoginSx(true)
+env:
+  env: "prod" # test pre prod
+  baseurl: https://sx.onecyber.cn
+  username: BE3518660865
+  username_enc: 1
+  password: Abcd@1234
+  password_enc: 1
+  login_type: onecyber_2_onelink
+headers:
+  csttoken: ${token}
+runpath: testsuit/sx_cloud
+after: 

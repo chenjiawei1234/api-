@@ -1,0 +1,96 @@
+name: 设备管理-数据概览
+description: 设备管理-数据概览
+commonparam:
+skip:
+namespaces: device_man_view
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/deviceCount
+    name: 设备数量
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/onlineCount
+    name: 设备在线数量
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/metadata/api/v1/device/group-by/groupname-onebox
+    name: 分组名称查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "succeed"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/count/model
+    name: 设备型号分布
+    headers:
+    method: GET
+    skip: 
+    data: 'operatingState=0'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/count/model
+    name: 在线设备型号分布
+    headers:
+    method: GET
+    skip: 
+    data: 'operatingState=2'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/count/sysmode
+    name: 网络类型分布
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/manufactureInfo
+    name: 设备型号查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/data/device/count
+    name: 24小时设备在线趋势
+    headers:
+    method: GET
+    skip: 
+    data: 'type=0'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/flow/group
+    name: 设备型近30天设备在线趋势号查询
+    headers:
+    method: GET
+    skip: 
+    data: 'type=3'
+    next: 
+    check:
+      - CheckMessage: "OK"
+  - url: /unionmallmanage/onecyber/cpe/proxy/datastore/core/api/v1/flow/group
+    name: 各分组数据用量
+    headers:
+    method: GET
+    skip: 
+    data: 'type=1'
+    next: 
+    check:
+      - CheckMessage: "OK"

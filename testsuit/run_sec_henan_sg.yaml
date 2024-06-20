@@ -1,0 +1,29 @@
+name: 河南省双域能开自动化测试
+before: 
+# env:
+#   baseurl: http://10.12.60.26:30239
+#   ecId: STD00000000666
+#   appKey: A0666
+#   appSecret: S00666
+#   groupCustId: 16660000000666
+# headers:
+# runpath: testsuit/sec_henan_sg/sg_order.yaml
+# after: 
+# env:
+#   baseurl: http://10.12.60.26:30239
+#   ecId: STD00000000666
+#   appKey: A0666
+#   appSecret: S00666
+#   groupCustId: 16660000000666
+# headers:
+# runpath: testsuit/sec_henan_sg/sg_order.yaml
+# after: 
+env:
+  baseurl: http://111.6.98.174:8001/xiyasi
+  ecId: XYS371440100000000001
+  appKey: A0002
+  appSecret: S00002
+  groupCustId: 16540004078672
+headers:
+runpath: testsuit/sec_henan_sg/sg_order.yaml
+after: 

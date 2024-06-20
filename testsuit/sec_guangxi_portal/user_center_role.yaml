@@ -1,0 +1,87 @@
+name: 用户中心-角色管理
+description: 用户中心-角色管理
+commonparam: 
+skip:
+namespaces: user_center_role
+testcases:
+  - url: /unionmallmanage/onecyber/user/role
+    name: 新增角色
+    headers:
+    method: POST
+    skip: 
+    data: '{"roleName":"lc测试角色","description":"","users":[],"status":1,"menuIdList":[]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role/list
+    name: 查询-默认条件
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10'
+    next: GetUserRoleId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role/list
+    name: 查询-按状态（启用）
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&status=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role/list
+    name: 查询-按状态（禁用）
+    headers:
+    method: GET
+    skip: 
+    data: 'page=1&pageSize=10&status=0'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role/detail
+    name: 角色详情
+    headers:
+    method: GET
+    skip: 
+    data: 'roleId=${GetUserRoleId}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role
+    name: 禁用角色
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"roleId":"${GetUserRoleId}","roleName":"lc测试角色","description":"","status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role
+    name: 启用角色
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"roleId":"${GetUserRoleId}","roleName":"lc测试角色","description":"","status":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role
+    name: 编辑角色
+    headers:
+    method: PATCH
+    skip: 
+    data: '{"roleName":"lc测试角色编辑","description":"","users":[],"status":1,"menuIdList":[],"roleId":"${GetUserRoleId}","modifyBy":"${global_username}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/user/role
+    name: 删除角色
+    headers:
+    method: DELETE
+    skip: 
+    data: 'roleId=${GetUserRoleId}'
+    next: 
+    check:
+      - CheckMessage: "成功"

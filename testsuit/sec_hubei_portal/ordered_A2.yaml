@@ -1,0 +1,16 @@
+name: 业务隔离A2
+description: DNN实例
+commonparam:
+skip:
+namespaces: ordered_A2
+testcases:
+  - url: /unionmallmanage/onecyber/icm/querySliceAndDnn
+    name: 默认查询条件
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

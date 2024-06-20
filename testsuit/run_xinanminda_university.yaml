@@ -1,0 +1,11 @@
+name: 校园双域西南民族大学自动化测试
+before: Position
+env:
+  baseurl: https://onecyber.swun.edu.cn:8002
+  username: admin
+  password: YmIwYTZlYWNhNDZiNDA2ZTEwNjg0YWVkMGMzZDZmYmU=
+  imageId: ${imageId}
+headers:
+  Onecybertoken: ${onecyberToken}
+runpath: testsuit/sc_xinanminda
+after: 

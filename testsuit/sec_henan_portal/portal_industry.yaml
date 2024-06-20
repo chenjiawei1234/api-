@@ -1,0 +1,34 @@
+name: 门户-行业解决方案
+description: 门户-行业解决方案
+commonparam: 
+skip:
+namespaces: portal_industry
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 行业解决方案
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"PortalSolutionBanner"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo?r=0.6451334446189319
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionStatus":"2","pageSize":9999}'
+    next: solutionId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/solution/searchSolutionInfo?r=0.24697287729386197
+    name: 详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"solutionId":"${solutionId}","pageSize":9999}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

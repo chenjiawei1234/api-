@@ -1,0 +1,60 @@
+name: 订单中心-订单管理
+description: 订单中心-订单管理
+commonparam:
+skip:
+namespaces: order_man
+testcases:
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrder
+    name: 订单查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"oid":null,"companyName":null,"itemStatus":null}'
+    next: oid,buyerId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrder
+    name: 订单查询-按订单编号查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"oid":"${oid}","companyName":null,"itemStatus":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrder
+    name: 订单查询-按客户名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"oid":null,"companyName":"集团","itemStatus":null}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrder
+    name: 订单查询-按开通成功状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"oid":null,"companyName":null,"itemStatus":"700"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrder
+    name: 订单查询-按下单时间查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":0,"pageSize":10,"oid":null,"companyName":null,"itemStatus":null,"startDate":"2023-04-01 00:00:00","endDate":"2024-05-31 00:00:00"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/om-npn/web/order/queryOsmsOrderDetail
+    name: 订单详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"buyerId":"${buyerId}","oid":"${oid}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

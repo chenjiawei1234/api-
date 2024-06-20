@@ -1,0 +1,18 @@
+name: 广西省平台前台自动化测试
+before: OnecyberLogin
+env:
+  platform_type: "portal" # 门户portal 运管platform
+  env: "test" # test pre prod
+  baseurl: http://10.12.63.250:30926
+  username: OCB1001772397
+  username_enc: 1
+  password: 05ecy!3eR
+  password_enc: 1
+  login_type: onecyber_2_onelink
+  custCode: "100AIOT11000004556018DTt9V"
+  custId: "9911000004702014"
+  beId: "100"
+headers:
+  csttoken: ${token}
+runpath: testsuit/sec_guangxi_portal/five_tariff_net_man.yaml
+after: 

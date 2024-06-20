@@ -1,0 +1,51 @@
+name: 待办线索
+description: 待办线索
+commonparam:
+skip:
+namespaces: market_demand
+testcases:
+  - url: /unionmallmanage/common-npn/web/marketManage/searchMarketDemand
+    name: 待办线索查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"inputString":"","marketDemandType":"","pageIndex":0,"pageSize":10}'
+    next: marketDemandId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/marketManage/searchMarketDemand
+    name: 待办线索查询-按线索类型查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"inputString":"","marketDemandType":"4","pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/marketManage/searchMarketDemand
+    name: 待办线索查询-按企业名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"inputString":"测试","marketDemandType":"","pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/marketManage/updateMarketDemand
+    name: 代办更新-设为已办
+    headers:
+    method: POST
+    skip: 
+    data: '{"marketDemandId":"${marketDemandId}","changeHandle":"1"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/marketManage/updateMarketDemand
+    name: 代办更新-设为代办
+    headers:
+    method: POST
+    skip: 
+    data: '{"marketDemandId":"${marketDemandId}","changeHandle":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

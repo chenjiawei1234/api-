@@ -1,0 +1,16 @@
+name: 已订购业务-A2
+description: 已订购业务-A2
+commonparam:
+skip:
+namespaces: ordered_a_two
+testcases:
+  - url: /unionmallmanage/onecyber/icm/querySliceAndDnn
+    name: 默认查询条件
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>吉林省平台前台自动化测试</title>
+		<base target="_blank">
+	
+	
+		<style type="text/css">
+			*{ margin: 0;padding: 0;}
+			body {margin-left: 20px;margin-right: 20px;background-color:#FFFFFF;
+				font-family:sans-serif;
+				font-size: 13px;color: #676a6c;overflow-x: hidden; }
+	
+			.my-head {background-color: #1ab394; height: 50px; }
+			.theme-font { color: #1ab394;}
+			.head-report{color: #FFF;font-size: 30px;font-weight: 700;text-align: center;padding-top: 5px;}
+	
+			.my-content-sum{height: 120px;margin-top:40px;border-color: #e7eaec;border-style: solid solid none;border-width: 3px 0; }
+			.my-content-sum-detail{height: 120px;margin-top:100px;border-color: #e7eaec;border-style: solid solid none;border-width: 3px 0; }
+			.my-content-sum-title{border-color: #e7eaec;border-style: solid solid none;border-width: 1px 0; }
+	
+			.my-content-title{padding: 6px;}
+			.my-table{width: 100%;max-width: 100%;margin-bottom: 8px;margin-top: 8px;}
+			.my-table  > tr > th, .my-table > tbody > tr > td, .my-table > thead > tr > th {
+				line-height: 1.42857;
+				padding: 8px;
+				vertical-align: middle;
+				border-left: 1px solid #E7E7E7;border-bottom: 1px solid #E7E7E7;
+			}
+			table{border-collapse:collapse;border-spacing:0;  }
+			th,td{padding:0; }
+			th {text-align: left;}
+			.my-table > thead > tr > th {
+				background-color: #F5F5F6;border: 1px solid #E7E7E7;border-bottom: 1px solid #E7E7E7;}
+			.btn-primary {border-radius: 2px; background-color: #1ab394;
+				color: #FFF;padding: 1px 3px;font-size: 12px;line-height: 1.5;}
+			.btn-close {border-radius: 2px; background-color: gray;
+				color: #FFF;padding: 1px 3px;font-size: 12px;line-height: 1.5;}
+			.fail {color: red}
+			.pass {color: green}
+			.error {color: red}
+		</style>
+	</head>
+	
+	<body>
+	<div>
+	
+		<div class="my-head">
+			<h1 class="head-report">吉林省平台前台自动化测试</h1>
+		</div>
+	
+	
+		<div class="my-content-sum">
+			<div>
+				<h3 class="my-content-title">报告汇总</h3>
+				<hr class="my-content-sum-title" />
+			</div>
+			<table class="my-table"  style="width: 50%;">
+				<thead>
+				<tr>
+					<th>用例总数</th>
+					<th>用例通过数</th>
+					<th>用例失败数</th>
+					<th>通过率</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td  class="pass" id="All">15</td>
+					<td  class="pass" id="Ok">4</td>
+					<td  class="fail" id="Fail">4</td>
+					<td  class="rate" id="Rate">99%</td>
+				</tr>
+				</tbody>
+			</table>
+			<div>
+				<h4 class="my-content-title" style="width: 50%;">被测环境地址：http://10.12.63.250:32629</h4>
+				<h4 class="my-content-title" style="width: 50%;">执行开始时间：2024-06-20 16:02:27</h4>
+				<h4 class="my-content-title" style="width: 50%;">执行结束时间：2024-06-20 16:02:28</h4>
+			</div>
+		</div>
+	
+	
+		<div class="my-content-sum-detail">
+			<h3 class="my-content-title">用例详情</h3>
+			<hr class="my-content-sum-title" />
+			<div class="input-group panel-heading" style="width: 100%; height: 50px; background-color: #1ab394; margin-bottom: 10px; text-align: left; font-family: Consolas;">
+				<div style="padding: 15px;">
+					<label style="color: snow">测试场景:</label>
+					<select class="chosen-select form-control" data-placeholder="All" style="width: 300px;" name="filterScene" id="filterScene">
+						<option value="">All</option>
+					</select>
+					<label style="color: snow">测试用例:</label>
+					<select class="chosen-select form-control" data-placeholder="All" style="width: 300px;" name="filterClass" id="filterClass">
+						<option value="">All</option>
+					</select>
+					<label style="color: snow">结果:</label>
+					<select class="chosen-select form-control" data-placeholder="All" style="width: 300px;" name="filterResult" id="filterResult">
+						<option value="">All</option>
+					</select>
+					<div style="float: right; margin-right: 20px;background-color: #FFFFFF;">
+						<label class="form-control">
+							<span class="text-navy theme-font1">用例数: </span><span class="pass" id="filterAll"></span><span> | </span>
+							<span class="text-danger pass1">成功数: </span><span class="text-danger pass" id="filterOk"></span><span> | </span>
+							<span class="text-danger fail1">失败数: </span><span class="text-danger fail" id="filterFail"></span><span> | </span>
+						</label>
+					</div>
+				</div>
+			</div>
+			<table id="tab-detail" class="my-table">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>测试场景</th>
+					<th>测试用例</th>
+					<th>请求路径</th>
+					<th>执行时间</th>
+					<th>结果</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody id="detailBody">
+				</tbody>
+			</table>
+		</div>
+	
+	</div>
+	
+	
+	<script>
+	
+	  var sourceData= [{"bill":[{"content":["","POST http://10.12.63.250:32629/unionmallmanage/common-npn/portal/case/queryList","csttoken:default","{\"pageSize\":9999,\"data\":username}","{\"message\":\"服务器异常\",\"decinfo\":null,\"status\":500}"],"detail":"assert failed: status: 500 type: float64, expect: 0 type: string","duration":"123ms","name":"列表查询","result":"失败","url":"/unionmallmanage/common-npn/portal/case/queryList"},{"content":["","POST http://10.12.63.250:32629/unionmallmanage/common-npn/portal/case/queryCaseInfo","csttoken:default","{\"caseId\":\"default\"}","{\"message\":\"客户案例不存在\",\"decinfo\":null,\"status\":\"1\"}"],"detail":"assert failed: status: 1 type: string, expect: 0 type: int","duration":"1086ms","name":"详情","result":"失败","url":"/unionmallmanage/common-npn/portal/case/queryCaseInfo"}],"scene":"门户-客户案例"}]
+	  var resultData = getResultData(sourceData);
+	  window.onload = function () {
+	
+		  calcReportData();
+		  overviewResult("","")
+		  getDetailBodyData(resultData);
+	  };
+	
+	
+	  function getResultData(data) {
+			let _resultData = data;
+			var _data = [];
+			for (var i = 0; i < _resultData.length; i++) {
+				for (var j = 0; j < _resultData[i].bill.length; j++) {
+					let tmp = _resultData[i].bill[j];
+					tmp.scene = _resultData[i].scene;
+					_data.push(tmp)
+				}
+			}
+			return _data
+	  }
+	
+	
+	  function getDetailBodyData(data) {
+		  let _resultData = data;
+		  var detailBodyNode = document.getElementById("detailBody");
+		  var detailBody = "";
+		  for (var i = 0; i < _resultData.length; i++) {
+			  var detailLog = _resultData[i].detail;
+			  var openData = "<p>" +detailLog + "</p>";
+	
+			  var status = _resultData[i].result;
+			  var statusNode = "";
+			  if (status === "通过"){
+				  statusNode = "<td class='td4 pass'>通过</td>";
+			  } else if(status === "失败"){
+				  statusNode = "<td class='td4 fail'>失败</td>";
+				  var _content = _resultData[i].content;
+				  for (var j = 0; j < _content.length; j ++) {
+					  openData += "<p>" +_content[j] + "</p>"
+				  }
+			  }
+			  detailBody += "<tr><td class='td1'>" + (i+1) + "</td>" +
+				  "<td class='td6'>" + _resultData[i].scene + "</td>" +
+				  "<td class='td2'>" + _resultData[i].name + "</td>" +
+				  "<td class='td2'>" + _resultData[i].url + "</td>" +
+				  "<td class='td3'>" + _resultData[i].duration + "</td>" +
+				  statusNode +
+				  "<td class='td5'><button class='open-list close btn-primary' onclick='getOpenList(this," + i + ")'>展开</button></td></tr>" +
+				  "<tr class='open-data' style='display:none' id='" + i + "'><td colspan='5>" +
+				  "<div class='open-data-list'>" +openData+ "</div>" + "</td></tr>";
+		  }
+		  detailBodyNode.innerHTML = detailBody;
+	  }
+	
+	
+	  function getOpenList(dom, index) {
+		  var className = dom.getAttribute("class");
+		  if (className === "open-list close btn-primary") {
+			  dom.setAttribute("class", "open-list open");
+			  dom.setAttribute("class","btn-close");
+			  dom.innerText = "关闭";
+			  document.getElementById(index).style.cssText = "font-family: Consolas;font-size:12px";
+		  } else {
+			  dom.setAttribute("class", "open-list close btn-primary");
+			  dom.innerText = "展开";
+			  document.getElementById(index).style.cssText = "display:none";
+		  }
+	  }
+	
+	
+	  function calcReportData() {
+		  var classNames = [];
+		  var results = [];
+		  var filterScene = [];
+	
+	
+		  let _resultData = resultData;
+		  _resultData.forEach((item)=>{
+			  classNames.push(item.name);
+	  });
+		  classNames= unique(classNames);
+		  _resultData.forEach((item)=>{
+			  results.push(item.result);
+	  });
+		  results = unique(results);
+		  _resultData.forEach((item)=>{
+			  filterScene.push(item.scene);
+		  });
+		  filterScene = unique(filterScene);
+	
+		  var classDom = document.getElementById("filterClass");
+		  var resultDom = document.getElementById("filterResult");
+		  var sceneDom = document.getElementById("filterScene");
+		  createOption(classDom,classNames);
+		  createOption(resultDom,results);
+		  createOption(sceneDom,filterScene);
+	
+		  generateResult("", "", "");
+	
+		  classDom.onchange = classChange;
+		  resultDom.onchange = resultChange;
+		  sceneDom.onchange = sceneChange;
+	  }
+	
+	
+	  function classChange(e){
+		  var selectDom1 = document.getElementById("filterResult");
+		  var index = selectDom1.options.selectedIndex;
+		  var resultName = selectDom1.options[index].value;
+		  var selectDom2 = document.getElementById("filterScene");
+		  var index2 = selectDom2.options.selectedIndex;
+		  var sceneName = selectDom2.options[index2].value;
+		  var className = e.target.value;
+		  generateResult(className, resultName, sceneName);
+	  }
+	
+	
+	  function resultChange(e){
+		  var selectDom = document.getElementById("filterClass");
+		  var index = selectDom.options.selectedIndex;
+		  var className = selectDom.options[index].value;
+		  var selectDom2 = document.getElementById("filterScene");
+		  var index2 = selectDom2.options.selectedIndex;
+		  var sceneName = selectDom2.options[index2].value;
+		  var resultName = e.target.value;
+		  generateResult(className, resultName, sceneName);
+	  }
+	
+	  function sceneChange(e){
+		  var selectDom = document.getElementById("filterClass");
+		  var index = selectDom.options.selectedIndex;
+		  var className = selectDom.options[index].value;
+		  var selectDom1 = document.getElementById("filterResult");
+		  var index1 = selectDom1.options.selectedIndex;
+		  var resultName = selectDom1.options[index1].value;
+		  var sceneName = e.target.value;
+		  generateResult(className, resultName, sceneName);
+	  }
+	
+	
+	
+	  function generateResult(className, caseResult, sceneName) {
+		  var filterAll = 0;
+		  var filterOk = 0;
+		  var filterFail = 0;
+		  let _resultData = resultData;
+	
+		  if (className !== ""|| caseResult !== "" || sceneName !== ""){
+			  console.log(className,caseResult)
+			  var filterDatam = [];
+			  if (className !== ""){
+				  filterData =_resultData.filter((item,index)=>{
+					  return className === item.name;
+			  });
+				  _resultData = filterData;
+			  }
+			  if (caseResult !== ""){
+				  filterData =_resultData.filter((item,index)=>{
+					  return caseResult === item.result;
+			  });
+				  _resultData = filterData;
+			  }
+			  if (sceneName !== ""){
+				  filterData =_resultData.filter((item,index)=>{
+					  return sceneName === item.scene;
+				  });
+				  _resultData = filterData;
+			  }
+		  }
+	
+		  _resultData.forEach((item,index)=>{
+	
+			  if ((className === "" || item.name === className) && (caseResult === "" || item.result === caseResult) && (sceneName === "" || item.scene === sceneName)) {
+			  filterAll += 1;
+			  if (item.result === '通过') {
+				  filterOk += 1;
+			  } else if (item.result === '失败') {
+				  filterFail += 1;
+			  }
+			 }
+		  });
+	
+		  getDetailBodyData(_resultData);
+		  document.getElementById("filterAll").innerHTML=filterAll;
+		  document.getElementById("filterOk").innerHTML=filterOk;
+		  document.getElementById("filterFail").innerHTML=filterFail;
+	
+	  }
+	
+	  function overviewResult(className, caseResult) {
+		  var filterAll = 0;
+		  var filterOk = 0;
+		  var filterFail = 0;
+		  var filterRate = "";
+		  let _resultData = resultData;
+		  _resultData.forEach((item,index)=>{
+	
+			  if ((className === "" || item.name === className) && (caseResult === "" || item.result === caseResult)) {
+				  filterAll += 1;
+				  if (item.result === '通过') {
+					  filterOk += 1;
+				  } else if (item.result === '失败') {
+					  filterFail += 1;
+				  }
+			  }
+		  });
+		  var rate = (filterOk / filterAll) * 100;
+		  filterRate = rate.toFixed(2) + "%";
+	
+		  document.getElementById("All").innerHTML=filterAll;
+		  document.getElementById("Ok").innerHTML=filterOk;
+		  document.getElementById("Fail").innerHTML=filterFail;
+		  document.getElementById("Rate").innerHTML=filterRate;
+	
+	  }
+	
+	
+	  function createOption(_select,arr){
+		  for ( i = 0; i < arr.length; i++){
+			  var _option = document.createElement("option");
+			  _option.value = arr[i];
+			  _option.text = arr[i];
+			  _select.appendChild(_option);
+		  }
+	
+		  return _select;
+	  }
+	
+	
+	  function unique(arr){
+		  var x = new Set(arr);
+		  return [...x];
+	  }
+	
+	</script>
+	</body>
+	</html>

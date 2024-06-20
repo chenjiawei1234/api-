@@ -1,0 +1,250 @@
+name: 系统管理信息查询
+description: 查询系统管理界面信息
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/auth/user/get-plus?userId=14a9422a7e4e4fd98a9366490b968dec
+    name: 查询展示系统管理个人中心首页信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/self/user/update
+    name: 修改个人中心的手机号信息
+    headers:
+      Productid: ${productId}
+    method: PUT
+    skip: 
+    data: {id: "14a9422a7e4e4fd98a9366490b968dec", telephone: "15111961588"}
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/self/user/update
+    name: 修改个人中心的邮箱信息
+    headers:
+      Productid: ${productId}
+    method: PUT
+    skip: 
+    data: {id: "14a9422a7e4e4fd98a9366490b968dec", email: "1222@163.com"}
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+  - url: /api/auth/role/list
+    name: 查询帐号管理界面角色信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/org/list
+    name: 查询帐号管理界面帐号所属分组信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=&name=
+    name: 帐号管理界面帐号信息默认条件查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=&name=admin
+    name: 帐号管理界面帐号信息筛选帐号admin查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=&email=1222%40163.com
+    name: 帐号管理界面帐号信息筛选邮箱查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=&realName=%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98
+    name: 帐号管理界面帐号信息筛选姓名查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=&telephone=15111961588
+    name: 帐号管理界面帐号信息筛选手机号查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=1&name=
+    name: 帐号管理界面帐号信息筛选分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=1&name=admin
+    name: 帐号管理界面帐号组合帐号和分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=1&telephone=15111961588
+    name: 帐号管理界面帐号组合手机号和分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=1&realName=%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E5%91%98
+    name: 帐号管理界面帐号组合姓名和分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/user/list-plus?pageSize=10&pageNum=1&orgId=1&email=1222%40163.com
+    name: 帐号管理界面帐号组合邮箱和分组查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+
+
+  - url: /api/auth/user/create
+    name: 新增帐号管理界面帐号
+    headers:
+    method: POST
+    skip: "true"
+    data: {name: "ruanzhenzhen", realName: "中中中", telephone: "15111965899", email: "1611@163.com", orgId: "1",password: "NGE4MTg5YTI3NDY0NDYxMzlhYTdjNTg4NjEyZGNjZTM=",roleIds: ["b3fea6cc0677434ea8c96a6cf5cac7be"]}
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+  - url: /api/auth/user/create
+    name: 编辑帐号管理界面帐号
+    headers:
+    method: PUT
+    skip: "true"
+    data: {name: "ruanzhenzhen", realName: "中中发中", telephone: "15111965899", email: "1611@163.com", orgId: "1",password: "NGE4MTg5YTI3NDY0NDYxMzlhYTdjNTg4NjEyZGNjZTM=",roleIds: ["b3fea6cc0677434ea8c96a6cf5cac7be"]}
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+  - url: /api/auth/role/list-specific?pageNum=1&pageSize=10&name=
+    name: 查询角色管理角色信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/role/list-specific?pageNum=1&pageSize=10&name=
+    name: 查询角色管理角色信息
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"
+
+
+  - url: /api/school/oper-log/getLogList
+    name: 日志默认条件查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: "", userName: "", startTime: "", endTime: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+
+  - url: /api/school/oper-log/getLogList
+    name: 日志筛选日志类型查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: 2, userName: "", startTime: "", endTime: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/oper-log/getLogList
+    name: 日志筛选起始日期查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: "", userName: "", startTime: "2024-03-29 00:00:00",endTime: "2024-03-29 23:59:59"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/oper-log/getLogList
+    name: 日志筛选用户名
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: "", userName: "admin", startTime: "",endTime: ""}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/oper-log/getLogList
+    name: 日志组合起始时间和用户名查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: "", userName: "admin", startTime: "2024-03-29 00:00:00",endTime: "2024-03-29 23:59:59"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/oper-log/getLogList
+    name: 日志组合起始时间和用户名和日志类型查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {pageIndex: 1, pageSize: 10, logType: 2, userName: "admin", startTime: "2024-03-29 00:00:00",endTime: "2024-03-29 23:59:59"}
+    next: 
+    check:
+      - CheckMessage: "操作成功"

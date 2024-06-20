@@ -1,0 +1,57 @@
+name: BBU监控
+description: BBU监控场景
+commonparam:
+skip:
+namespaces:
+testcases:
+  - url: /api/network/bbu/lifecycleStatuSummary
+    name: 查询BBU状态分布
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/bbu/queryBbuList
+    name: 查询BBU列表默认条件
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"bbuName":"","lifecycleStatus":"","pageSize":10}'
+    next: bbuName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/bbu/queryBbuList
+    name: 输入名称查询BBU列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"bbuName":"${bbuName}","lifecycleStatus":"","pageSize":10}'
+    next:
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/bbu/queryBbuList
+    name: 选择BBU状态查询BBU列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"bbuName":"","lifecycleStatus":2,"pageSize":10}'
+    next:
+    check:
+      - CheckRecords: '{"lifecycleStatus":2}'
+  - url: /api/network/bbu/queryBbuList
+    name: 组合条件查询BBU列表
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"index":1,"bbuName":"${bbuName}","lifecycleStatus":2,"pageSize":10}'
+    next:
+    check:
+      - CheckMessage: "success"
+

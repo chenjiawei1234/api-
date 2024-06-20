@@ -1,0 +1,115 @@
+name: 5G快线-固件管理
+description: 5G快线-固件管理
+commonparam: 
+skip:
+namespaces: five_tariff_firm
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/device/manufactureInfo
+    name: 固件型号查询
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/list
+    name: 固件查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":2,"size":10,"page":0,"firmwareName":"","custCode":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/afterUpAdd?firmwareName=lc%E6%B5%8B%E8%AF%95%E5%9B%BA%E4%BB%B6&factory=cmiot&deviceModel=G5000-A04&version=v1.1.25&orgId=undefined&uploadType=1&url=www.baidu.com
+    name: 固件新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"firmwareName":"lc测试固件","deviceModel":"G5000-A04","factory":"cmiot","version":"v1.1.25","uploadType":"1","url":"www.baidu.com","minioUri":"","fileSize":"","suffix":"","description":"www.baidu.com","minioPos":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/list
+    name: 固件按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareName":"lc测试固件","custCode":""}'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/list
+    name: 固件按启用状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareName":"","custCode":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/detail
+    name: 固件详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"fid":${id}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/ban
+    name: 固件禁用
+    headers:
+    method: POST
+    skip: 
+    data: '{"fid":${id},"usable":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/task/device/list
+    name: 升级任务列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareId":${id},"imei":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/task/device/list
+    name: 升级任务列表查询-按成功状态
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareId":${id},"imei":"","upgradeStatus":"6"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/task/device/list
+    name: 升级任务列表查询-按升级时间
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareId":${id},"imei":"","planUpgradeTime":[1711900800000,1714492799000]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/task/device/list
+    name: 升级任务列表查询-按IMEI
+    headers:
+    method: POST
+    skip: 
+    data: '{"orgIds":["1"],"usable":1,"size":10,"page":0,"firmwareId":${id},"imei":"147852369963258"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/delete
+    name: 固件删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"fids":[${id}]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+

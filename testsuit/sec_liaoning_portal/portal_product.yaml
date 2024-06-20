@@ -1,0 +1,213 @@
+name: 门户-产品
+description: 门户-产品
+commonparam: 
+skip:
+namespaces: portal_product
+testcases:
+  - url: /oneCyberPortal/product/introduce/B1
+    name: 公共网络B1
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/B2
+    name: 公网专用B2
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/B3
+    name: 专网专用B3
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A1
+    name: 业务加速A1
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A2
+    name: 业务隔离A2
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A3
+    name: 本地业务保障A3
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A4
+    name: 数据不出场A4
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A5
+    name: 边缘节点A5
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A6
+    name: 超级上行A6
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/intro/A7
+    name: 5G专线A7
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A8
+    name: 网络设计服务A8
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A9
+    name: 网络优化服务A9
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A10
+    name: 网络运维服务A10
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A11
+    name: 重保服务A11
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A12
+    name: 网络安全服务A12
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A13
+    name: 网络数字孪生A13
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/A14
+    name: 核心网专用A14
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/Extranet
+    name: 双域专网
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/Settled
+    name: 入驻专网
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/PrivateNetwork
+    name: 流量专网
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/LocalAreaNetwork
+    name: 局域专网
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/LIne
+    name: 5G快线
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200
+  - url: /oneCyberPortal/product/introduce/B1A2A7
+    name: 5G直连
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200

@@ -1,0 +1,116 @@
+name: SIM卡管理
+description: SIM卡管理场景
+commonparam:
+skip:
+namespaces: sim
+testcases:
+  - url: /api/connection/oper-sim/getSimTypeSummary
+    name: 查询SIM卡类型分布
+    headers:
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimLifeStatusSummary
+    name: 查询SIM卡生命周期分布
+    headers:
+    method: POST
+    skip: 
+    data:
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 查询SIM卡列表默认条件
+    headers:
+    method: POST
+    skip: 
+    data: '{"cardType":"","status":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡类型查询SIM卡列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"cardType":"01","status":"","pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡状态查询SIM卡列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"cardType":"","status":2,"pageIndex":1,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimList
+    name: 选择卡类型和卡状态查询SIM卡列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"cardType":"01","status":2,"pageIndex":1,"pageSize":10}'
+    next: msisdn
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSliceInfo
+    name: SIM卡关联切片查询
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-dnn/getDnnList
+    name: SIM卡DNN列表查询
+    headers:
+    method: POST
+    skip: 
+    data:
+      msisdn: ${msisdn}
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/oper-sim/getSimDataAmountDTO
+    name: SIM卡流量查询
+    headers:
+    method: POST
+    skip: 
+    data:
+      msisdn: ${msisdn}
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/group-offering/getCardOfferingsList
+    name: 单卡资费列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"msisdn":""}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/group-offering/getCardOfferingsList
+    name: 输入卡号查询单卡资费列表
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"msisdn":"${msisdn}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/connection/group-offering/getAllGroupOffering
+    name: 群组资费列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"pageIndex":1}'
+    next: 
+    check:
+      - CheckMessage: "success"

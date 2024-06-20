@@ -1,0 +1,116 @@
+name: 数字大屏
+description: 数字大屏场景
+commonparam:
+skip:
+namespaces: digital
+testcases:
+  - url: /api/networkdata/upf/list
+    name: upf列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/upf/info/null
+    name: upf基本信息
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/gnodeb/list
+    name: 基站列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/gnodeb/info/
+    name: 基站信息
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/gnodeb/prb?type=4
+    name: 查询基站利用率
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/alert/count
+    name: 查询告警总数
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/alert/list
+    name: 查询告警列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/probe/link/list
+    name: 查询端到端列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/terminal/list
+    name: 查询5G终端列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: serviceAddress
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/slice/list
+    name: 查询切片列表
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/networkdata/terminal/count
+    name: 查询5G终端数
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    prev: 
+    next: 
+    check:
+      - CheckMessage: "success"

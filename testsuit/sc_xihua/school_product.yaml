@@ -1,0 +1,102 @@
+name: 双域专网基本信息查询
+description: 查询实例ID套餐信息组织机构等
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/school/whiteList/product
+    name: 查询产品实例ID
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: productId
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/queryOrganization
+    name: 查询组织机构
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/packageQuery
+    name: 套餐信息查询
+    headers: 
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/DragAndDrop/queryTemplate
+    name: 双域专网二维码模板查询
+    headers:
+      Productid: 
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/privateNetworkQuery
+    name: 双域专网基本信息查询
+    headers:
+      Productid: ${productId}
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/agreementConfig/query
+    name: 二维码界面服务协议查询
+    headers:
+      Productid: ${productId}
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/agreementConfig/update
+    name: 二维码界面服务协议修改
+    headers:
+      Productid: ${productId}
+    method: GET
+    skip: "true"
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/QRCode/generateQRCode
+    name: 二维码生成
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {height: 128, width: 128}
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/agreementConfig/query
+    name: 用ID查询服务协议
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "操作成功"
+  - url: /api/school/whiteList/applicationProgressQuery
+    name: 申请进度查询
+    headers:
+      Productid: ${productId}
+    method: POST
+    skip: 
+    data: {phone: "15111961752", accountName: null}
+    next: 
+    check:
+      - CheckMessage: "操作成功"

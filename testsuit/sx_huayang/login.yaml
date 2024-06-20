@@ -1,0 +1,40 @@
+name: 登录
+description: 登录场景
+commonparam:
+skip:
+namespaces:
+testcases:
+  - url: /api/auth/login/loginToken
+    name: 用户名或密码输入错误
+    headers: 
+    method: POST
+    skip: 
+    data:
+      imageId: "1"
+      username: "huzhixiang"
+      password: "YmIwYTZlYWNhNDZiNDA2ZTEwNjg0YWVkMGMzZDZmYmU="
+    next: 
+    check:
+      - CheckJson: '{"code":1,"msg":"用户系统业务异常","data":{"bizCode":30200101,"bizMessage":"登录名或者密码错误"}}'
+  - url: /api/auth/login/loginToken
+    name: 正确登录
+    headers: 
+    method: POST
+    skip: 
+    data:
+      imageId: "1"
+      username: "huzhixiang"
+      password: "NWRhNjg0NzNlZDM2Y2NiYTJiNjA3YmIwZjhmOTM5ODc="
+    next: onecyberToken
+    check:
+      - CheckMessage: "用户系统操作成功"
+  - url: /api/auth/login/logoutToken
+    name: 退出登录
+    headers:
+      onecyberToken: ${onecyberToken}
+    method: GET
+    skip: true
+    data:
+    next: 
+    check:
+      - CheckMessage: "用户系统操作成功"

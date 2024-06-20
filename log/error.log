@@ -1,0 +1,26 @@
+{"level":"ERROR","ts":"2024-06-19T16:56:06.430+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T16:58:56.917+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T16:59:14.470+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T16:59:20.676+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T16:59:28.743+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T16:59:45.692+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:03:10.209+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:04:08.319+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:06:44.961+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:14:10.023+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:15:15.467+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:16:35.629+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:21:12.447+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:21:28.290+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:23:33.595+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:35:15.285+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:38:21.352+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:40:27.463+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:40:44.261+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:41:35.302+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:42:23.199+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:42:31.987+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T17:44:07.113+0800","caller":"api_test/main.go:33","msg":"testentry unmarshal filed, err: file not found"}
+{"level":"ERROR","ts":"2024-06-19T21:08:02.548+0800","caller":"engine/runner.go:537","msg":"Post \"http://10.12.63.250:32629/unionmallmanage/common-npn/portal/case/queryList\": dial tcp 10.12.63.250:32629: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
+{"level":"ERROR","ts":"2024-06-19T21:08:23.602+0800","caller":"engine/runner.go:537","msg":"Post \"http://10.12.63.250:32629/unionmallmanage/common-npn/portal/case/queryCaseInfo\": dial tcp 10.12.63.250:32629: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}
+{"level":"ERROR","ts":"2024-06-20T11:31:22.603+0800","caller":"engine/runner.go:537","msg":"Post \"http://10.12.63.250:32629/unionmallmanage/common-npn/portal/case/queryList\": dial tcp 10.12.63.250:32629: connectex: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond."}

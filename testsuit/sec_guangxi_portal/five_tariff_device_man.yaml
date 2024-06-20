@@ -1,0 +1,33 @@
+name: 5G快线-设备管理
+description: 5G快线-设备管理
+commonparam:
+skip:
+namespaces: five_tariff_device_man
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表-默认列表查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&page=1'
+    next: imei
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 设备列表-按IMEI查询
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&imei=${imei}&operatingState=0&page=1'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/export
+    name: 设备列表-设备列表到处
+    headers:
+    method: GET
+    skip: 
+    data: 'pageSize=9999&currentPage=1&operatingState=0&page=1'
+    next: 
+    check:
+      - CheckHttpStatus: 200

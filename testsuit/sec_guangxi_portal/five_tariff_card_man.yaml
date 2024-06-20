@@ -1,0 +1,51 @@
+name: 5G快线-卡信息管理
+description: 5G快线-卡信息管理
+commonparam:
+skip:
+namespaces: five_tariff_card_man
+testcases:
+  - url: /unionmallmanage/onecyber/cp/om/portal/a2/query
+    name: DNN管理-默认列表查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"custCode":"100AIOT11000004556018DTt9V","pageIndex":"1","pageSize":"10","startDate":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cp/om/portal/a2/query
+    name: DNN管理-实例列表查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"custCode":"100AIOT11000004556018DTt9V","pageIndex":"1","pageSize":"10","startDate":"2021-10-20%2000%3A00%3A00"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 5G卡通信管理-默认列表查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"pageIndex":"1","page":"1","pageSize":"10"}'
+    next: imei,imsi
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 5G卡通信管理-按IMSI查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"pageIndex":"1","page":"1","pageSize":"10","imsi":"${imsi}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 5G卡通信管理-按IMEI查询
+    headers:
+    method: GET
+    skip: 
+    data: '{"pageIndex":"1","page":"1","pageSize":"10","imei":"${imei}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

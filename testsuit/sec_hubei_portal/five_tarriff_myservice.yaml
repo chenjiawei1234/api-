@@ -1,0 +1,24 @@
+name: 5G快线-我的服务
+description: 5G快线-我的服务
+commonparam:
+skip:
+namespaces: five_tariff_myservice
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/v1/device/list
+    name: 主页列表展示
+    headers:
+    method: GET
+    skip: 
+    data: 'currentPage=1&pageSize=10&operatingState=0&page=1'
+    next: id
+    check:
+      - CheckMessage: "成功"
+  - url: unionmallmanage/onecyber/cpe/v1/device/update?id=${id}
+    name: 修改设备名称
+    headers:
+    method: PUT
+    skip: 
+    data: '{"deviceName":"test","deviceModel":"G5000-A04","factory":"cmiot","imei":"780309783241533","deviceId":10142659,"id":10142659}'
+    next:
+    check:
+      - CheckMessage: "成功"

@@ -1,0 +1,69 @@
+name: 设备管理-固件管理
+description: 设备管理-固件管理
+commonparam: 
+skip:
+namespaces: device_man_firm
+testcases:
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/list
+    name: 固件查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"","orgIds":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "SUCCESS"
+  - url: /unionmallmanage/onecyber/cpe/v1/ota/firmware/add
+    name: 固件新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"firmwareName":"lc测试固件","deviceModel":"G5000-A04","factory":"cmiot","version":"v1.1.25","uploadType":"1","url":"www.onecyber.com","minioPos":"","firmwareSize":0,"suffix":"","saasTag":"Onecyber","productId":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/list
+    name: 固件按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"lc测试固件","orgIds":["${global_custCode}"]}'
+    next: id
+    check:
+      - CheckMessage: "SUCCESS"
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/list
+    name: 固件按启用状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"size":10,"page":0,"firmwareName":"","usable":1,"orgIds":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "SUCCESS"
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/detail
+    name: 固件详情
+    headers:
+    method: POST
+    skip: 
+    data: '{"fid":${id},"orgIds":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "SUCCESS"
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/ban
+    name: 固件禁用
+    headers:
+    method: POST
+    skip: 
+    data: '{"fid":${id},"usable":0,"saasTag":"Onecyber","orgIds":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "SUCCESS"
+  - url: /unionmallmanage/onecyber/cpe/proxy/ota/firmware/delete
+    name: 固件删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"fids":[${id}],"orgIds":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "SUCCESS"

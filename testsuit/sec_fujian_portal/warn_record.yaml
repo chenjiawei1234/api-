@@ -1,0 +1,107 @@
+name: 告警管理-告警统计
+description: 告警管理-告警统计
+commonparam: 
+skip:
+namespaces: warn_record
+testcases:
+  - url: /unionmallmanage/standard/am-npn/portal/zadata/sliceDnnData
+    name: 告警查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: sliceId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询-按紧急状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"alertLevel":1,"activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询-按5G核心网类型查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"objType":"3","activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询-按基站设备查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"alertEquipTypeId":9,"activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询-按告警名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"ruleName":"告警","activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 告警查询-按时间查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"startCreateTime":"2024-05-01 00:00:00","endCreateTime":"2024-05-31 00:00:00","activeIs":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRecord/portal/queryWarnRecordPage
+    name: 历史告警查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageSize":10,"orderBy":"firstTime","asc":0,"sliceIdList":["${sliceId}"],"pageIndex":0,"activeIs":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/warn/searchWarnDetail
+    name: 告警统计
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceIdList":["${sliceId}"]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/warn/warnDetailByTimeType
+    name: 告警统计-按时间
+    headers:
+    method: POST
+    skip: 
+    data: '{"sliceIdList":["${sliceId}"]}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/am-npn/portal/warn/queryWarnDetail
+    name: 告警统计-按告警级别和对象类型
+    headers:
+    method: POST
+    skip: 
+    data: '{"beginTime":"1999-09-17 00:00:00","sliceIdList":["${sliceId}"],"endTime":"2024-05-08 23:59:59"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+
+  

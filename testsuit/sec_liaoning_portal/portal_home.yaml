@@ -1,0 +1,15 @@
+name: 门户-主页
+description: 门户-主页
+commonparam: 
+skip:
+namespaces: portal_home
+testcases:
+  - url: /home
+    name: 主页
+    headers:
+    method: GET
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckHttpStatus: 200

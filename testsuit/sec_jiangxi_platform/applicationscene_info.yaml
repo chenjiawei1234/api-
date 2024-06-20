@@ -1,0 +1,69 @@
+name: 内容管理-应用场景管理
+description: 内容管理-应用场景管理
+commonparam:
+skip:
+namespaces: applicationscene_info
+testcases:
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/list
+    name: 应用场景查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"applicationSceneName":null,"pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/industry/list
+    name: 行业查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageMode":1}'
+    next: industryId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/create
+    name: 应用场景新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"applicationSceneName":"lc应用场景测试","applicationSceneId":"112233","activeStatus":0,"industryId":"${industryId}"}'
+    next: pkId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/list
+    name: 应用场景查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"applicationSceneName":"lc应用场景测试","pageIndex":0,"pageSize":10}'
+    next: pkId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/list
+    name: 应用场景查询-按启用状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"applicationSceneName":null,"pageIndex":0,"pageSize":10,"status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/update
+    name: 应用场景修改
+    headers:
+    method: POST
+    skip: 
+    data: '{"applicationSceneName":"lc应用场景测试22","applicationSceneId":"112233","activeStatus":0,"industryId":"${industryId}","pkId":${pkId}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/guidemanager/applicationscene/delete
+    name: 应用场景删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"pkId":${pkId}}'
+    next: 
+    check:
+      - CheckMessage: "成功"

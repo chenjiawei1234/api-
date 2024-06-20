@@ -1,0 +1,15 @@
+name: 切片监控
+description: 切片监控场景
+commonparam:
+skip:
+namespaces: slice
+testcases:
+  - url: /api/network/sliceMonitoring/sliceList
+    name: 查询切片列表
+    headers:
+    method: POST
+    skip: 
+    data: 
+    next: 
+    check:
+      - CheckMessage: "success"

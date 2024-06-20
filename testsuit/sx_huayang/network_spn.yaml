@@ -1,0 +1,36 @@
+name: 专网数字大屏
+description: 专网数字大屏场景
+commonparam:
+skip:
+namespaces: 
+testcases:
+  - url: /api/network/transmission/lifecycleStatuSummary
+    name: 查询传输网信息
+    headers:
+      Apitoken: ${apiToken}
+    method: GET
+    skip: 
+    data: 
+    next: spnName
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/transmission/spnVuniTrend
+    name: 传输网传输速率性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"neName":"${spnName}","startTime":"{{TimesAlterTwoHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"
+  - url: /api/network/transmission/spnPktLostRateTrend
+    name: 传输网丢包率性能
+    headers:
+      Apitoken: ${apiToken}
+    method: POST
+    skip: 
+    data: '{"neName":"${spnName}","startTime":"{{TimesAlterTwoHour}}","endTime":"{{TimesHour}}"}'
+    next: 
+    check:
+      - CheckMessage: "success"

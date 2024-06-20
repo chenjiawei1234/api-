@@ -1,0 +1,60 @@
+name: 配置管理-公告管理
+description: 配置管理-公告管理
+commonparam:
+skip:
+namespaces: announcement_man
+testcases:
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10}'
+    next: announceId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询-按公告标题
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":"上线","pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询-按公告类型
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10,"type":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询-按已下架状态
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10,"status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询-按创建时间
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10,"createTimeStart":"2024-04-01 00:00:00","createTimeEnd":"2024-04-30 23:59:59"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/announcement/manager/queryList
+    name: 公告查询-按发布时间
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10,"releaseTimeStart":"2024-04-01 00:00:00","releaseTimeEnd":"2024-04-30 23:59:59"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

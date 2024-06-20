@@ -1,0 +1,27 @@
+name: 门户-客户案例
+description: 门户-客户案例场景
+commonparam:
+  usrname: username
+  pwd: password
+skip:
+namespaces: 
+testcases:
+  - url: /unionmallmanage/common-npn/portal/case/queryList
+    name: 列表查询
+    headers: 
+    method: POST
+    skip: 
+    data: '{"pageSize":9999,"data":${usrname}}'
+    next: caseId
+    check:
+      - CheckStatus: "0"
+  - url: /unionmallmanage/common-npn/portal/case/queryCaseInfo
+    name: 详情
+    headers: 
+    method: POST
+    skip:
+    data:
+      caseId: ${caseId}
+    next: 
+    check:
+      - CheckStatus: 0

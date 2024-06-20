@@ -1,0 +1,78 @@
+name: 告警管理-告警规则
+description: 告警管理-告警规则
+commonparam: 
+skip:
+namespaces: warn_rule
+testcases:
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryWoReceiverList
+    name: 告警接收人查询
+    headers:
+    method: POST
+    skip: 
+    data: '{}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryMonitorTargetList
+    name: 监控对象查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"alertType":1}'
+    next: targetId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryPage
+    name: 告警规则查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleName":"","pageSize":15,"pageIndex":0,"alertEnable":"","alertLevel":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/add
+    name: 告警规则新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleLimit":{"ruleLimitName":"ping时延（ms）","ruleLimitCode":1,"ruleLimitOper":0,"ruleLimitValue":20},"targetId":"${targetId}","ruleName":"lc告警规则测试","noticeType":0,"noticeTel":"","verifyCode":"","startTime":"2024-05-01 00:00:00","endTime":"2024-05-31 00:00:00","alertLevel":1,"alertType":1,"alertEnable":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryPage
+    name: 告警规则查询-按名称查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleName":"lc告警规则测试","pageSize":15,"pageIndex":0,"alertEnable":"","alertLevel":""}'
+    next: ruleId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryPage
+    name: 告警规则查询-按紧急状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleName":"","pageSize":15,"pageIndex":0,"alertEnable":"","alertLevel":1}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/queryPage
+    name: 告警规则查询-按关闭状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleName":"","pageSize":15,"pageIndex":0,"alertEnable":"0","alertLevel":""}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/standard/mmnpn/api/alertRule/portal/delete
+    name: 告警规则删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"ruleId":"${ruleId}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"

@@ -1,0 +1,43 @@
+name: 门户-新闻洞察
+description: 门户-新闻洞察
+commonparam: 
+skip:
+namespaces: portal_news
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 新闻洞察
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"PortalNewsBanner"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 新闻分类
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"newsTypes"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/newsinsight/list
+    name: 全部新闻
+    headers:
+    method: POST
+    skip: 
+    data: '{"type":"全部","pageSize":10,"pageIndex":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/portal/newsinsight/list
+    name: 行业洞察
+    headers:
+    method: POST
+    skip: 
+    data: '{"type":"行业洞察","pageSize":10,"pageIndex":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  

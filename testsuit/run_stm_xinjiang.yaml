@@ -1,0 +1,14 @@
+name: 新疆石头煤矿企业平台自动化测试
+before: LoginThirdFromFSD
+env:
+  baseurl: http://10.12.6.165:30353
+  username: manager
+  password: u#Y1r29*x6
+  fsdbaseurl: http://10.12.59.121:8081
+  redisAddr: 10.12.59.121:6379
+  redisPassword: ViXtel*408^n
+  redisPrefixKey: yssh:captcha_codes
+headers:
+  Onecybertoken: ${onecyberToken}
+runpath: testsuit/xinjiang_stm
+after: 

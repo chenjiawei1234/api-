@@ -1,0 +1,78 @@
+name: 物联卡管理
+description: 物联卡管理
+commonparam:
+skip:
+namespaces: sim_card_man
+testcases:
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 列表查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}"}'
+    next: msisdn,imsi,iccid
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 按卡状态查询（已激活）
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}","status":"2"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 按开户时间查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}","beginOpenTime":"2023-07-01 00:00:00","endOpenTime":"2023-07-31 23:59:59"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 按msisdn查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}","entityType":1,"entityId":"${msisdn}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 按imsi查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}","entityType":3,"entityId":"${imsi}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/queryPage
+    name: 按iccid查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"pageIndex":1,"pageSize":10,"custCode":"${global_custCode}","entityType":2,"entityId":"${iccid}"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/synthesisQuery
+    name: 综合查询
+    headers:
+    method: POST
+    skip: true
+    data: '{"custCode":"${global_custCode}","params":{"msisdn":"${msisdn}"}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/icm-npn/portal/card/exportDataUsage
+    name: 数据导出
+    headers:
+    method: POST
+    skip: true
+    data: '{"params":{"queryDate":"202312,202401,202402,202403,202404"},"list":["${global_custCode}"]}'
+    next: 
+    check:
+      - CheckMessage: "成功"

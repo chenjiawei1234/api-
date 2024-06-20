@@ -1,0 +1,88 @@
+name: 内容管理-新闻洞察
+description: 内容管理-新闻洞察
+commonparam:
+skip:
+namespaces: news_insight
+testcases:
+  - url: /unionmallmanage/common-npn/web/config/getConfig
+    name: 配置查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"infoTypeCode":"newsTypes"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/list
+    name: 新闻查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/create
+    name: 新闻新增
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":"lc新闻测试","pictureUrl":"1713770747217a983d43f-0fcc-4a78-be02-d4c86b1fbb6e.bmp","type":"新闻与活动","status":1,"introduction":"新闻介绍","detail":"PHA+5paw6Ze75YaF5a65PC9wPg=="}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/list
+    name: 新闻查询-按新闻标题查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":"lc新闻测试","pageIndex":0,"pageSize":10}'
+    next: pkId
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/list
+    name: 新闻查询-按已发布状态查询
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":null,"pageIndex":0,"pageSize":10,"status":0}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/update
+    name: 新闻发布
+    headers:
+    method: POST
+    skip: 
+    data: '{"pkId":${pkId},"status":"0"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/update
+    name: 新闻下架
+    headers:
+    method: POST
+    skip: 
+    data: '{"pkId":${pkId},"status":"1"}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/update
+    name: 新闻修改
+    headers:
+    method: POST
+    skip: 
+    data: '{"title":"lc新闻测试2","pictureUrl":"1713770747217a983d43f-0fcc-4a78-be02-d4c86b1fbb6e.bmp","type":"新闻与活动","status":1,"introduction":"新闻介绍","detail":"PHA+5paw6Ze75YaF5a65PC9wPg==","pkId":${pkId}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+  - url: /unionmallmanage/common-npn/web/newsinsight/delete
+    name: 新闻删除
+    headers:
+    method: POST
+    skip: 
+    data: '{"pkId":${pkId}}'
+    next: 
+    check:
+      - CheckMessage: "成功"
+
